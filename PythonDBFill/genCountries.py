@@ -18,6 +18,6 @@ def generateCountries():
     f2.close()
 
     print("Finished generating countries")
-    return n
+    return (n-1)
 
 # generateCountries()
