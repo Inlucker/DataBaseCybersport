@@ -1,7 +1,7 @@
 #ifndef IUSERROLESREPOSITORY_H
 #define IUSERROLESREPOSITORY_H
 
-#include <memory>
+#include <string>
 
 using namespace std;
 

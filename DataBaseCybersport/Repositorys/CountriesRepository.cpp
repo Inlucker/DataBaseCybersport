@@ -1,16 +1,16 @@
-#include "UserRolesRepository.h"
+#include "CountriesRepository.h"
 #include "Errors/RepositoryErrors.h"
 #include "Settings.h"
 
-UserRolesRepository::UserRolesRepository()
+CountriesRepository::CountriesRepository()
 {
 
 }
 
-string UserRolesRepository::getUserRole(int id)
+string CountriesRepository::getCountry(int id)
 {
     connect();
-    string query = "select name from UserRoles where id='" + std::to_string(id) + "';";
+    string query = "select name from Countries where id='" + std::to_string(id) + "';";
     PQsendQuery(m_connection.get(), query.c_str());
 
     bool flag = false;
@@ -35,12 +35,12 @@ string UserRolesRepository::getUserRole(int id)
 
     time_t t_time = time(NULL);
     if (flag)
-        throw GetUserRoleError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+        throw GetCountryError(error_msg, __FILE__, __LINE__, ctime(&t_time));
     else
-        throw GetUserRoleError("Unexpected getUserRole error", __FILE__, __LINE__, ctime(&t_time));
+        throw GetCountryError("Unexpected getCountry error", __FILE__, __LINE__, ctime(&t_time));
 }
 
-void UserRolesRepository::connect()
+void CountriesRepository::connect()
 {
     string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();
     int m_dbport = Settings::get(Settings::DBPort, Settings::DataBase).toInt();

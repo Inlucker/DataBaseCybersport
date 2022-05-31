@@ -8,8 +8,14 @@
 using namespace std;
 
 #include "Essensities/UserBL.h"
+#include "Essensities/PlayerDTO.h"
+
 #include "Controllers/TeamController.h"
+
 #include "Repositorys/PlayersRepository.h"
+#include "Repositorys/TeamsRepository.h"
+#include "Repositorys/CountriesRepository.h"
+
 #include "TableModels/PlayersTableModel.h"
 
 namespace Ui {
@@ -29,6 +35,8 @@ public:
 private slots:
     void on_exit_btn_clicked();
 
+    void on_add_btn_clicked();
+
 signals:
     void exit();
 
@@ -43,8 +51,11 @@ private:
     unique_ptr<TeamController> team_controller;
 
     shared_ptr<PlayersRepository> players_repository;
+    shared_ptr<TeamsRepository> teams_repository;
+    shared_ptr<CountriesRepository> countries_repository;
 
-    shared_ptr<PlayersTableModel> players_table_model;
+    shared_ptr<PlayersTableModel> free_players_table_model;
+    shared_ptr<PlayersTableModel> my_players_table_model;
 };
 
 #endif // TEAMWINDOW_H

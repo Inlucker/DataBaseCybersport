@@ -2,6 +2,7 @@
 #define USERROLESREPOSITORY_H
 
 #include <libpq-fe.h>
+#include <memory>
 
 #include "Repositorys/IUserRolesRepository.h"
 

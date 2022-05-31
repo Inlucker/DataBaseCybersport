@@ -13,6 +13,12 @@ TeamWindow::TeamWindow(QWidget *parent) :
     team_controller = make_unique<TeamController>();
 
     players_repository = make_shared<PlayersRepository>();
+    teams_repository = make_shared<TeamsRepository>();
+    countries_repository = make_shared<CountriesRepository>();
+
+
+    free_players_table_model = make_shared<PlayersTableModel>();
+    my_players_table_model = make_shared<PlayersTableModel>();
 }
 
 TeamWindow::~TeamWindow()
@@ -29,7 +35,7 @@ void TeamWindow::login(shared_ptr<UserBL> user_bl, string role)
     Settings::set(Settings::DBUser, Settings::DataBase) = r;
     Settings::set(Settings::DBPass, Settings::DataBase) = r;
     updateFreePlayersList();
-    //updateMyPlayerList();
+    updateMyPlayerList();
 }
 
 void TeamWindow::on_exit_btn_clicked()
@@ -42,10 +48,24 @@ void TeamWindow::on_exit_btn_clicked()
 
 void TeamWindow::updateFreePlayersList()
 {
-    shared_ptr<vector<PlayerBL>> free_players = players_repository->getFreePlayers();
+    shared_ptr<vector<PlayerDTO>> my_players_dto = players_repository->getFreePlayersDTO();
 
+    free_players_table_model = make_shared<PlayersTableModel>(my_players_dto);
     ui->free_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    players_table_model = make_shared<PlayersTableModel>(free_players);
-    ui->free_tableView->setModel(players_table_model.get());
+    ui->free_tableView->setModel(free_players_table_model.get());
+}
+
+void TeamWindow::updateMyPlayerList()
+{
+    shared_ptr<vector<PlayerDTO>> my_players_dto = players_repository->getPlayersDTOByTeam(team_controller->getUser()->getId());
+    my_players_table_model = make_shared<PlayersTableModel>(my_players_dto);
+    ui->my_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->my_tableView->setModel(my_players_table_model.get());
+}
+
+
+void TeamWindow::on_add_btn_clicked()
+{
+
 }
 

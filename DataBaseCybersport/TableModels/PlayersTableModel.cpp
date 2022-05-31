@@ -2,14 +2,14 @@
 
 PlayersTableModel::PlayersTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
-    rows_number = 4;
-    players = make_shared<vector<PlayerBL>>();
+    rows_number = 0;
+    players = make_shared<vector<PlayerDTO>>();
 }
 
-PlayersTableModel::PlayersTableModel(shared_ptr<vector<PlayerBL> > plrs)
+PlayersTableModel::PlayersTableModel(shared_ptr<vector<PlayerDTO> > plrs)
 {
-    rows_number = plrs->size();
     players = plrs;
+    rows_number = players->size();
 }
 
 int PlayersTableModel::rowCount(const QModelIndex &parent) const
@@ -32,11 +32,16 @@ QVariant PlayersTableModel::data(const QModelIndex &index, int role) const
         {
             case 0:
             {
-                return QString("%1").arg((*players)[row].getTeamId());
+                /*if ((*players)[row].getTeam())
+                    return QString("%1").arg((*players)[row].getTeamId());
+                else
+                    return "Has no team";*/
+                return QString::fromStdString((*players)[row].getTeam());
             }
             case 1:
             {
-                return QString("%1").arg((*players)[row].getCountryId());
+                //return QString("%1").arg((*players)[row].getCountryId());
+                return QString::fromStdString((*players)[row].getCountry());
             }
             case 2:
             {
@@ -71,5 +76,36 @@ QVariant PlayersTableModel::data(const QModelIndex &index, int role) const
         }
     }
 
+    return QVariant();
+}
+
+QVariant PlayersTableModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+    {
+        switch (section)
+        {
+        case 0:
+            return QString("Team");
+        case 1:
+            return QString("Country");
+        case 2:
+            return QString("Nickname");
+        case 3:
+            return QString("First name");
+        case 4:
+            return QString("Second name");
+        case 5:
+            return QString("Birth year");
+        case 6:
+            return QString("Main role");
+        case 7:
+            return QString("Rating");
+        }
+    }
+    else if (role == Qt::DisplayRole && orientation == Qt::Vertical)
+    {
+        return QString::number(section);
+    }
     return QVariant();
 }

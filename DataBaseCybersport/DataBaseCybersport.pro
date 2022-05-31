@@ -12,8 +12,14 @@ SOURCES += \
     Controllers/BaseController.cpp \
     Controllers/TeamController.cpp \
     Essensities/PlayerBL.cpp \
+    Essensities/PlayerDTO.cpp \
+    Essensities/TeamBL.cpp \
     Essensities/UserBL.cpp \
     Logger.cpp \
+    Repositorys/CountriesRepository.cpp \
+    Repositorys/ICountriesRepository.cpp \
+    Repositorys/ITeamsRepository.cpp \
+    Repositorys/TeamsRepository.cpp \
     TableModels/PlayersTableModel.cpp \
     Repositorys/IPlayersRepository.cpp \
     Repositorys/IUserRolesRepository.cpp \
@@ -33,8 +39,14 @@ HEADERS += \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
     Essensities/PlayerBL.h \
+    Essensities/PlayerDTO.h \
+    Essensities/TeamBL.h \
     Essensities/UserBL.h \
     Logger.h \
+    Repositorys/CountriesRepository.h \
+    Repositorys/ICountriesRepository.h \
+    Repositorys/ITeamsRepository.h \
+    Repositorys/TeamsRepository.h \
     TableModels/PlayersTableModel.h \
     Repositorys/IPlayersRepository.h \
     Repositorys/IUserRolesRepository.h \

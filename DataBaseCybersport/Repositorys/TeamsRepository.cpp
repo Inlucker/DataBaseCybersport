@@ -1,16 +1,16 @@
-#include "UserRolesRepository.h"
+#include "TeamsRepository.h"
 #include "Errors/RepositoryErrors.h"
 #include "Settings.h"
 
-UserRolesRepository::UserRolesRepository()
+TeamsRepository::TeamsRepository()
 {
 
 }
 
-string UserRolesRepository::getUserRole(int id)
+shared_ptr<TeamBL> TeamsRepository::getTeam(int id)
 {
     connect();
-    string query = "select name from UserRoles where id='" + std::to_string(id) + "';";
+    string query = "select * from Teams where id='" + to_string(id) + "';";
     PQsendQuery(m_connection.get(), query.c_str());
 
     bool flag = false;
@@ -19,9 +19,13 @@ string UserRolesRepository::getUserRole(int id)
     {
         if (PQresultStatus(res) == PGRES_TUPLES_OK && PQntuples(res))
         {
-            string role_name = PQgetvalue (res, 0, 0);
+            int ID = atoi(PQgetvalue (res, 0, 0));
+            int country_id = atoi(PQgetvalue (res, 0, 1));
+            int sponsor_id = atoi(PQgetvalue (res, 0, 2));
+            int captain_id = atoi(PQgetvalue (res, 0, 3));
+            string name = PQgetvalue (res, 0, 4);
 
-            return role_name;
+            return make_shared<TeamBL>(ID, country_id, sponsor_id, captain_id, name);
         }
         else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
         {
@@ -35,12 +39,27 @@ string UserRolesRepository::getUserRole(int id)
 
     time_t t_time = time(NULL);
     if (flag)
-        throw GetUserRoleError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+        throw GetTeamError(error_msg, __FILE__, __LINE__, ctime(&t_time));
     else
-        throw GetUserRoleError("Unexpected getUserRole error", __FILE__, __LINE__, ctime(&t_time));
+        throw GetTeamError("Unexpected getTeam error", __FILE__, __LINE__, ctime(&t_time));
 }
 
-void UserRolesRepository::connect()
+void TeamsRepository::addTeam(TeamBL &team_bl)
+{
+    //no need
+}
+
+void TeamsRepository::deleteTeam(int id)
+{
+    //no need
+}
+
+void TeamsRepository::updateTeam(TeamBL &team_bl, int id)
+{
+    //no need
+}
+
+void TeamsRepository::connect()
 {
     string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();
     int m_dbport = Settings::get(Settings::DBPort, Settings::DataBase).toInt();

@@ -113,4 +113,26 @@ public:
     }
 };
 
+class GetTeamError : public BaseError
+{
+public:
+    GetTeamError(string info, string filename, int line, const char *time, string error = "Get team error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
+class GetCountryError : public BaseError
+{
+public:
+    GetCountryError(string info, string filename, int line, const char *time, string error = "Get country error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
 #endif // REPOSITORYERRORS_H
