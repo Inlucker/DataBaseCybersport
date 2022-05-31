@@ -23,7 +23,7 @@ public:
     explicit TeamWindow(QWidget *parent = nullptr);
     ~TeamWindow();
 
-    void login(shared_ptr<UserBL> user_bl, string role = "Team_Captain");
+    void login(shared_ptr<UserBL> user_bl, string role = "team_captain");
 
 private slots:
     void on_exit_btn_clicked();

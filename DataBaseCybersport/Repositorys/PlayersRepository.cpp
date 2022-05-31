@@ -203,7 +203,10 @@ void PlayersRepository::connect()
 
     if (PQstatus( m_connection.get() ) != CONNECTION_OK && PQsetnonblocking(m_connection.get(), 1) != 0 )
     {
+       qDebug() << PQuser (m_connection.get());
+       qDebug() << PQpass (m_connection.get());
+       string err_msg = string (PQerrorMessage(m_connection.get()));
        time_t t_time = time(NULL);
-       throw ConnectionError("m_connection", __FILE__, __LINE__, ctime(&t_time));
+       throw ConnectionError(err_msg, __FILE__, __LINE__, ctime(&t_time));
     }
 }

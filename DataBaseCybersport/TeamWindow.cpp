@@ -25,9 +25,9 @@ void TeamWindow::login(shared_ptr<UserBL> user_bl, string role)
     team_controller->login(user_bl);
     //users_repository->setRole(user_bl->getRole(), user_bl->getRole());
     QVariant r(QString::fromStdString(role));
-    //ADD ROLE TEAM_CAPTAIN!
-    //Settings::set(Settings::DBUser, Settings::DataBase) = r;
-    //Settings::set(Settings::DBPass, Settings::DataBase) = r;
+    qDebug() << r.toString();
+    Settings::set(Settings::DBUser, Settings::DataBase) = r;
+    Settings::set(Settings::DBPass, Settings::DataBase) = r;
     updateFreePlayersList();
     //updateMyPlayerList();
 }

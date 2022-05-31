@@ -34,7 +34,7 @@ void BaseWindow::on_login_btn_clicked()
         string password = ui->password_lineEdit->text().toStdString();
         shared_ptr<UserBL> user_bl = user_repository->getUser(login, password);
         string role = user_roles_repository->getUserRole(user_bl->getRoleId());
-        if (role == "Team_Captain")
+        if (role == "team_captain")
         {
             team_window->login(user_bl);
             team_window->show();
