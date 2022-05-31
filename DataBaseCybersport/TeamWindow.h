@@ -38,6 +38,8 @@ private slots:
 
     void on_add_btn_clicked();
 
+    void on_delete_btn_clicked();
+
 signals:
     void exit();
 

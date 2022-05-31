@@ -130,7 +130,6 @@ void TeamWindow::on_add_btn_clicked()
                 }
             }
             int new_team_id = teams_table_model->data(founded_index).toInt();
-            //qDebug() << new_team_id;
 
             player_bl->getTeamId() = new_team_id;
             players_repository->updatePlayer(*player_bl, id);
@@ -145,6 +144,36 @@ void TeamWindow::on_add_btn_clicked()
     {
         QMessageBox::information(this, "Error", "Unexpected Error");
     }
+}
 
+
+void TeamWindow::on_delete_btn_clicked()
+{
+    try
+    {
+        QModelIndexList selectedRows = ui->my_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() <= 0)
+        {
+            QMessageBox::information(this, "Error", "Выберите хотябы одного вашего игрока из списка");
+            return;
+        }
+        for(auto& ind : selectedRows)
+        {
+            int id = ui->my_tableView->model()->data(ind).toInt();
+            shared_ptr<PlayerBL> player_bl = players_repository->getPlayer(id);
+
+            player_bl->getTeamId() = 0;
+            players_repository->updatePlayer(*player_bl, id);
+        }
+        updateLists();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
 }
 
