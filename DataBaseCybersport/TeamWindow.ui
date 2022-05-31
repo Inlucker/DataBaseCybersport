@@ -115,6 +115,21 @@
     </rect>
    </property>
   </widget>
+  <widget class="QComboBox" name="my_teams_comboBox">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>40</y>
+     <width>201</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string/>
+    </property>
+   </item>
+  </widget>
  </widget>
  <resources/>
  <connections/>

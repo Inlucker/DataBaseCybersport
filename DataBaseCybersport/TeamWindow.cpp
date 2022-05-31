@@ -35,7 +35,6 @@ void TeamWindow::login(shared_ptr<UserBL> user_bl, string role)
     team_controller->login(user_bl);
     //users_repository->setRole(user_bl->getRole(), user_bl->getRole());
     QVariant r(QString::fromStdString(role));
-    qDebug() << r.toString();
     Settings::set(Settings::DBUser, Settings::DataBase) = r;
     Settings::set(Settings::DBPass, Settings::DataBase) = r;
     //updateFreePlayersList();
@@ -56,10 +55,8 @@ void TeamWindow::updateFreePlayersList()
     shared_ptr<vector<PlayerDTO>> my_players_dto = players_repository->getFreePlayersDTO();
 
     free_players_table_model = make_shared<PlayersTableModel>(my_players_dto);
-    //ui->free_tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Stretch);
     ui->free_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->free_tableView->setModel(free_players_table_model.get());
-    qDebug() << free_players_table_model->columnCount();
     for (int i = 0; i < free_players_table_model->columnCount(); i++)
        ui->free_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 
@@ -84,6 +81,13 @@ void TeamWindow::updateMyPlayerList()
 void TeamWindow::updateTeamsList()
 {
     shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByCaptainId(team_controller->getUser()->getId());
+
+    ui->my_teams_comboBox->clear();
+    for (auto& team : *teams_dto)
+    {
+        ui->my_teams_comboBox->addItem(QString::fromStdString(team.getName()));
+    }
+
     teams_table_model = make_shared<TeamsTableModel>(teams_dto);
     ui->teams_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->teams_tableView->setModel(teams_table_model.get());
@@ -112,9 +116,23 @@ void TeamWindow::on_add_btn_clicked()
         {
             int id = ui->free_tableView->model()->data(ind).toInt();
             shared_ptr<PlayerBL> player_bl = players_repository->getPlayer(id);
-            player_bl->getTeamId() = 3;
-            //PlayerBL new_player_bl(*player_bl);
-            //PlayerBL new_player_bl(player_bl->getId(), 3, player_bl->getCountryId(), player_bl->get());
+
+            QString new_team = ui->my_teams_comboBox->currentText();
+            QModelIndex founded_index;
+            int row_count = teams_table_model->rowCount();
+            for (int i = 0; i < row_count; i++)
+            {
+                QModelIndex idx = teams_table_model->index(i, 4);
+                if (teams_table_model->data(idx).toString() == new_team)
+                {
+                   founded_index = teams_table_model->index(i, 0);
+                   break;
+                }
+            }
+            int new_team_id = teams_table_model->data(founded_index).toInt();
+            //qDebug() << new_team_id;
+
+            player_bl->getTeamId() = new_team_id;
             players_repository->updatePlayer(*player_bl, id);
         }
         updateLists();

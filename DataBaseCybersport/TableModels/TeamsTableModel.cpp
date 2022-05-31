@@ -77,7 +77,7 @@ QVariant TeamsTableModel::headerData(int section, Qt::Orientation orientation, i
         case 1:
             return QString("Country");
         case 2:
-            return QString("Spnsor");
+            return QString("Sponsor");
         case 3:
             return QString("Captain");
         case 4:
