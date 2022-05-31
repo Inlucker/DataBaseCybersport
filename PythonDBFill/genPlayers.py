@@ -16,7 +16,11 @@ def generatePlayers(records_number, countries_n):
         max_year = now.year - 9
         age = randint(min_year, max_year)
         rating = randint(1, 8000)
-        team_id = randint(1, records_number)
+        if (randint(0, 1)):
+            team_id = randint(1, records_number)
+        else:
+            team_id = ""
+
         country_id = randint(1, countries_n)
         line = "{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}\n".format(team_id,
                                                           country_id,

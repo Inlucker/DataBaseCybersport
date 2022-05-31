@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
-    <height>396</height>
+    <width>1102</width>
+    <height>667</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="delete_user_btn">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>340</y>
+     <x>890</x>
+     <y>280</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -34,8 +34,8 @@
   <widget class="QPushButton" name="delete_btn">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>220</y>
+     <x>890</x>
+     <y>160</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -52,8 +52,8 @@
   <widget class="QPushButton" name="exit_btn">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>280</y>
+     <x>890</x>
+     <y>220</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -70,8 +70,8 @@
   <widget class="QPushButton" name="add_btn">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>160</y>
+     <x>890</x>
+     <y>100</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -85,23 +85,23 @@
     <string>Add</string>
    </property>
   </widget>
-  <widget class="QListWidget" name="free_players_listWidget">
+  <widget class="QTableView" name="free_tableView">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>201</width>
-     <height>381</height>
+     <width>871</width>
+     <height>321</height>
     </rect>
    </property>
   </widget>
-  <widget class="QListWidget" name="my_players_listWidget">
+  <widget class="QTableView" name="my_tableView">
    <property name="geometry">
     <rect>
-     <x>220</x>
-     <y>10</y>
-     <width>201</width>
-     <height>381</height>
+     <x>10</x>
+     <y>340</y>
+     <width>871</width>
+     <height>321</height>
     </rect>
    </property>
   </widget>

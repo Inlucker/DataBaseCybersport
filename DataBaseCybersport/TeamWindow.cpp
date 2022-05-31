@@ -44,8 +44,8 @@ void TeamWindow::updateFreePlayersList()
 {
     shared_ptr<vector<PlayerBL>> free_players = players_repository->getFreePlayers();
 
-    ui->free_players_listWidget->clear();
-    for (auto &elem : *free_players)
-        ui->free_players_listWidget->addItem(QString::fromStdString(elem.getNickname()));
+    ui->free_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    players_table_model = make_shared<PlayersTableModel>(free_players);
+    ui->free_tableView->setModel(players_table_model.get());
 }
 

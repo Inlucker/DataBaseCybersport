@@ -11,9 +11,10 @@ CONFIG += c++11
 SOURCES += \
     Controllers/BaseController.cpp \
     Controllers/TeamController.cpp \
+    Essensities/PlayerBL.cpp \
     Essensities/UserBL.cpp \
-    Essensities/playerbl.cpp \
     Logger.cpp \
+    TableModels/PlayersTableModel.cpp \
     Repositorys/IPlayersRepository.cpp \
     Repositorys/IUserRolesRepository.cpp \
     Repositorys/IUsersRepository.cpp \
@@ -31,9 +32,10 @@ HEADERS += \
     Controllers/TeamController.h \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
+    Essensities/PlayerBL.h \
     Essensities/UserBL.h \
-    Essensities/playerbl.h \
     Logger.h \
+    TableModels/PlayersTableModel.h \
     Repositorys/IPlayersRepository.h \
     Repositorys/IUserRolesRepository.h \
     Repositorys/IUsersRepository.h \
