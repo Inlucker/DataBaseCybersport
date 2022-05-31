@@ -10,17 +10,23 @@ CONFIG += c++11
 
 SOURCES += \
     Controllers/BaseController.cpp \
+    Controllers/StudioController.cpp \
     Controllers/TeamController.cpp \
+    EssensitiesBL/CommentatorBL.cpp \
     EssensitiesBL/PlayerBL.cpp \
+    EssensitiesDTO/CommentatorDTO.cpp \
     EssensitiesDTO/PlayerDTO.cpp \
     EssensitiesBL/TeamBL.cpp \
     EssensitiesDTO/TeamDTO.cpp \
     EssensitiesBL/UserBL.cpp \
     Logger.cpp \
+    Repositorys/CommentatorRepository.cpp \
     Repositorys/CountriesRepository.cpp \
+    Repositorys/ICommentatorsRepository.cpp \
     Repositorys/ICountriesRepository.cpp \
     Repositorys/ITeamsRepository.cpp \
     Repositorys/TeamsRepository.cpp \
+    StudioWindow.cpp \
     TableModels/PlayersTableModel.cpp \
     Repositorys/IPlayersRepository.cpp \
     Repositorys/IUserRolesRepository.cpp \
@@ -37,19 +43,25 @@ SOURCES += \
 HEADERS += \
     BaseWindow.h \
     Controllers/BaseController.h \
+    Controllers/StudioController.h \
     Controllers/TeamController.h \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
+    EssensitiesBL/CommentatorBL.h \
     EssensitiesBL/PlayerBL.h \
+    EssensitiesDTO/CommentatorDTO.h \
     EssensitiesDTO/PlayerDTO.h \
     EssensitiesBL/TeamBL.h \
     EssensitiesDTO/TeamDTO.h \
     EssensitiesBL/UserBL.h \
     Logger.h \
+    Repositorys/CommentatorRepository.h \
     Repositorys/CountriesRepository.h \
+    Repositorys/ICommentatorsRepository.h \
     Repositorys/ICountriesRepository.h \
     Repositorys/ITeamsRepository.h \
     Repositorys/TeamsRepository.h \
+    StudioWindow.h \
     TableModels/PlayersTableModel.h \
     Repositorys/IPlayersRepository.h \
     Repositorys/IUserRolesRepository.h \
@@ -63,6 +75,7 @@ HEADERS += \
 
 FORMS += \
     BaseWindow.ui \
+    StudioWindow.ui \
     TeamWindow.ui
 
 # Default rules for deployment.

@@ -16,6 +16,9 @@ BaseWindow::BaseWindow(QWidget *parent)
     team_window = make_unique<TeamWindow>();
     connect(team_window.get(), SIGNAL(exit()), this, SLOT(resetBaseWindow()));
 
+    studio_window = make_unique<StudioWindow>();
+    connect(studio_window.get(), SIGNAL(exit()), this, SLOT(resetBaseWindow()));
+
     user_repository = make_shared<UsersRepository>();
     user_roles_repository = make_shared<UserRolesRepository>();
 }
@@ -38,6 +41,12 @@ void BaseWindow::on_login_btn_clicked()
         {
             team_window->login(user_bl);
             team_window->show();
+            this->hide();
+        }
+        else if (role == "studio_owner")
+        {
+            studio_window->login(user_bl);
+            studio_window->show();
             this->hide();
         }
         else
