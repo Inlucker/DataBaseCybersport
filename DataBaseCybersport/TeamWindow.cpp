@@ -23,6 +23,8 @@ TeamWindow::TeamWindow(QWidget *parent) :
     free_players_table_model = make_shared<PlayersTableModel>();
     my_players_table_model = make_shared<PlayersTableModel>();
     teams_table_model = make_shared<TeamsTableModel>();
+
+    ui->delete_user_btn->hide();
 }
 
 TeamWindow::~TeamWindow()
@@ -59,18 +61,19 @@ void TeamWindow::updateFreePlayersList()
     ui->free_tableView->setModel(free_players_table_model.get());
     for (int i = 0; i < free_players_table_model->columnCount(); i++)
        ui->free_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-
 }
 
 void TeamWindow::updateMyPlayerList()
 {
-    shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByCaptainId(team_controller->getUser()->getId());
+    /*shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByCaptainId(team_controller->getUser()->getId());
     shared_ptr<vector<PlayerDTO>> all_my_players_dto = make_shared<vector<PlayerDTO>>();
     for (auto& team : *teams_dto)
     {
         shared_ptr<vector<PlayerDTO>> tmp_my_players_dto = players_repository->getPlayersDTOByTeam(team.getId());
         all_my_players_dto->insert(all_my_players_dto->end(), tmp_my_players_dto->begin(), tmp_my_players_dto->end());
-    }
+    }*/
+    shared_ptr<vector<PlayerDTO>> all_my_players_dto = players_repository->getPlayersDTOByCaptain(team_controller->getUser()->getId());
+
     my_players_table_model = make_shared<PlayersTableModel>(all_my_players_dto);
     ui->my_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->my_tableView->setModel(my_players_table_model.get());
@@ -175,5 +178,23 @@ void TeamWindow::on_delete_btn_clicked()
     {
         QMessageBox::information(this, "Error", "Unexpected Error");
     }
+}
+
+
+void TeamWindow::on_free_tableView_clicked(const QModelIndex &index)
+{
+    ui->free_tableView->selectRow(index.row());
+}
+
+
+void TeamWindow::on_my_tableView_clicked(const QModelIndex &index)
+{
+    ui->my_tableView->selectRow(index.row());
+}
+
+
+void TeamWindow::on_teams_tableView_clicked(const QModelIndex &index)
+{
+    ui->teams_tableView->selectRow(index.row());
 }
 

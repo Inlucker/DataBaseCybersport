@@ -17,6 +17,7 @@ public:
     shared_ptr<vector<PlayerDTO> > getFreePlayersDTO();
     shared_ptr<vector<PlayerBL> > getPlayersByTeam(int team_id);
     shared_ptr<vector<PlayerDTO> > getPlayersDTOByTeam(int team_id);
+    shared_ptr<vector<PlayerDTO> > getPlayersDTOByCaptain(int captain_id);
     virtual void addPlayer(PlayerBL& player_bl) override;
     virtual void deletePlayer(int id) override;
     virtual void updatePlayer(PlayerBL& player_bl, int id) override;

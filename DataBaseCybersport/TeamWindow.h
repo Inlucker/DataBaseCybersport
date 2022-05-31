@@ -40,6 +40,12 @@ private slots:
 
     void on_delete_btn_clicked();
 
+    void on_free_tableView_clicked(const QModelIndex &index);
+
+    void on_my_tableView_clicked(const QModelIndex &index);
+
+    void on_teams_tableView_clicked(const QModelIndex &index);
+
 signals:
     void exit();
 
