@@ -1,12 +1,12 @@
 #include "UserBL.h"
 
-/*UserBL::UserBL()
+UserBL::UserBL()
 {
     id = -1;
-    role = "";
+    role_id = -1;
     login = "";
     password = "";
-}*/
+}
 
 UserBL::UserBL(int i, int r_id, string l, string p) : id(i), role_id(r_id), login(l), password(p)
 {

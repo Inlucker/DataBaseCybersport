@@ -14,50 +14,6 @@ public:
     }
 };
 
-class GetCanvasError : public BaseError
-{
-public:
-    GetCanvasError(string info, string filename, int line, const char *time, string error = "Get canvas error")
-        : BaseError(info, filename, line, time, error) {};
-    virtual const char* what() const noexcept
-    {
-        return err_info.c_str();
-    }
-};
-
-class InsertCanvasError : public BaseError
-{
-public:
-    InsertCanvasError(string info, string filename, int line, const char *time, string error = "Insert canvas error")
-        : BaseError(info, filename, line, time, error) {};
-    virtual const char* what() const noexcept
-    {
-        return err_info.c_str();
-    }
-};
-
-class DeleteCanvasError : public BaseError
-{
-public:
-    DeleteCanvasError(string info, string filename, int line, const char *time, string error = "Delete canvas error")
-        : BaseError(info, filename, line, time, error) {};
-    virtual const char* what() const noexcept
-    {
-        return err_info.c_str();
-    }
-};
-
-class UpdateCanvasError : public BaseError
-{
-public:
-    UpdateCanvasError(string info, string filename, int line, const char *time, string error = "Update canvas error")
-        : BaseError(info, filename, line, time, error) {};
-    virtual const char* what() const noexcept
-    {
-        return err_info.c_str();
-    }
-};
-
 class LoginError : public BaseError
 {
 public:
@@ -113,43 +69,10 @@ public:
     }
 };
 
-class GetParamsError : public BaseError
+class GetUserRoleError : public BaseError
 {
 public:
-    GetParamsError(string info, string filename, int line, const char *time, string error = "Get params error")
-        : BaseError(info, filename, line, time, error) {};
-    virtual const char* what() const noexcept
-    {
-        return err_info.c_str();
-    }
-};
-
-class InsertParamsError : public BaseError
-{
-public:
-    InsertParamsError(string info, string filename, int line, const char *time, string error = "Insert params error")
-        : BaseError(info, filename, line, time, error) {};
-    virtual const char* what() const noexcept
-    {
-        return err_info.c_str();
-    }
-};
-
-class DeleteParamsError : public BaseError
-{
-public:
-    DeleteParamsError(string info, string filename, int line, const char *time, string error = "Delete params error")
-        : BaseError(info, filename, line, time, error) {};
-    virtual const char* what() const noexcept
-    {
-        return err_info.c_str();
-    }
-};
-
-class UpdateParamsError : public BaseError
-{
-public:
-    UpdateParamsError(string info, string filename, int line, const char *time, string error = "Update params error")
+    GetUserRoleError(string info, string filename, int line, const char *time, string error = "Get user role error")
         : BaseError(info, filename, line, time, error) {};
     virtual const char* what() const noexcept
     {

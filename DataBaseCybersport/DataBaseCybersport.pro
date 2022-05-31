@@ -9,9 +9,13 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Controllers/BaseController.cpp \
+    Controllers/TeamController.cpp \
     Essensities/UserBL.cpp \
     Logger.cpp \
+    Repositorys/IUserRolesRepository.cpp \
     Repositorys/IUsersRepository.cpp \
+    Repositorys/UserRolesRepository.cpp \
     Repositorys/UsersRepository.cpp \
     Settings.cpp \
     TeamWindow.cpp \
@@ -20,11 +24,15 @@ SOURCES += \
 
 HEADERS += \
     BaseWindow.h \
+    Controllers/BaseController.h \
+    Controllers/TeamController.h \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
     Essensities/UserBL.h \
     Logger.h \
+    Repositorys/IUserRolesRepository.h \
     Repositorys/IUsersRepository.h \
+    Repositorys/UserRolesRepository.h \
     Repositorys/UsersRepository.h \
     Settings.h \
     TeamWindow.h

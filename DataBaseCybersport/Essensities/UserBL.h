@@ -8,7 +8,7 @@ using namespace std;
 class UserBL
 {
 public:
-    UserBL() = delete;
+    UserBL();
     UserBL(int id, int r_id, string l, string p);
 
     bool operator ==(UserBL& an_ubl);

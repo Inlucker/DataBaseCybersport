@@ -3,6 +3,8 @@
 
 #include <QMessageBox>
 
+#include "Errors/BaseError.h"
+#include "Logger.h"
 #include "Settings.h"
 
 BaseWindow::BaseWindow(QWidget *parent)
@@ -15,13 +17,13 @@ BaseWindow::BaseWindow(QWidget *parent)
     connect(team_window.get(), SIGNAL(exit()), this, SLOT(resetBaseWindow()));
 
     user_repository = make_shared<UsersRepository>();
+    user_roles_repository = make_shared<UserRolesRepository>();
 }
 
 BaseWindow::~BaseWindow()
 {
     delete ui;
 }
-
 
 void BaseWindow::on_login_btn_clicked()
 {
@@ -31,9 +33,10 @@ void BaseWindow::on_login_btn_clicked()
         string login = ui->login_lineEdit->text().toStdString();
         string password = ui->password_lineEdit->text().toStdString();
         shared_ptr<UserBL> user_bl = user_repository->getUser(login, password);
-        if (user_bl->getRoleId() == 4)
+        string role = user_roles_repository->getUserRole(user_bl->getRoleId());
+        if (role == "Team_Captain")
         {
-            //team_window->login(user_bl);
+            team_window->login(user_bl);
             team_window->show();
             this->hide();
         }

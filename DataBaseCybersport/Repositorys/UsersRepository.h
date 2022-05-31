@@ -7,7 +7,6 @@
 using namespace std;
 
 #include "IUsersRepository.h"
-#include "Errors/RepositoryErrors.h"
 
 class UsersRepository : public IUsersRepository
 {
@@ -23,13 +22,6 @@ public:
 
 protected:
     void connect();
-
-    /*string m_dbhost;
-    int m_dbport;
-    string m_dbname;
-    string m_dbuser;
-    string m_dbpass;*/
-    string m_schema;
 
     shared_ptr<PGconn> m_connection;
 };

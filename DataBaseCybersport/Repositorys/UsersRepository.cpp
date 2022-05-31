@@ -1,4 +1,5 @@
 #include "UsersRepository.h"
+#include "Errors/RepositoryErrors.h"
 #include "Settings.h"
 
 UsersRepository::UsersRepository()
@@ -182,18 +183,12 @@ void UsersRepository::updateUser(UserBL &user_bl, int id)
 
 void UsersRepository::connect()
 {
-    string m_dbhost;
-    int m_dbport;
-    string m_dbname;
-    string m_dbuser;
-    string m_dbpass;
-    string m_dbschema;
-    m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();
-    m_dbport = Settings::get(Settings::DBPort, Settings::DataBase).toInt();
-    m_dbname = Settings::get(Settings::DBName, Settings::DataBase).toString().toStdString();
-    m_dbuser = Settings::get(Settings::DBUser, Settings::DataBase).toString().toStdString();
-    m_dbpass = Settings::get(Settings::DBPass, Settings::DataBase).toString().toStdString();
-    m_schema = Settings::get(Settings::Schema, Settings::DataBase).toString().toStdString();
+    string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();
+    int m_dbport = Settings::get(Settings::DBPort, Settings::DataBase).toInt();
+    string m_dbname = Settings::get(Settings::DBName, Settings::DataBase).toString().toStdString();
+    string m_dbuser = Settings::get(Settings::DBUser, Settings::DataBase).toString().toStdString();
+    string m_dbpass = Settings::get(Settings::DBPass, Settings::DataBase).toString().toStdString();
+    //m_schema = Settings::get(Settings::Schema, Settings::DataBase).toString().toStdString();
 
     m_connection.reset( PQsetdbLogin(m_dbhost.c_str(), to_string(m_dbport).c_str(), nullptr, nullptr, m_dbname.c_str(), m_dbuser.c_str(), m_dbpass.c_str()), &PQfinish );
 

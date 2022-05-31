@@ -2,7 +2,6 @@
 #define IUSERSREPOSITORY_H
 
 #include <memory>
-#include <vector>
 
 using namespace std;
 
