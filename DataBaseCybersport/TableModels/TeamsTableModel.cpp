@@ -79,9 +79,9 @@ QVariant TeamsTableModel::headerData(int section, Qt::Orientation orientation, i
         case 2:
             return QString("Spnsor");
         case 3:
-            return QString("Team name");
-        case 4:
             return QString("Captain");
+        case 4:
+            return QString("Team name");
         case 5:
             return QString("Average rating");
         }

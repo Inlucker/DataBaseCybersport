@@ -67,8 +67,14 @@ void TeamWindow::updateFreePlayersList()
 
 void TeamWindow::updateMyPlayerList()
 {
-    shared_ptr<vector<PlayerDTO>> my_players_dto = players_repository->getPlayersDTOByTeam(team_controller->getUser()->getId()); //FIX: change user id to team_id
-    my_players_table_model = make_shared<PlayersTableModel>(my_players_dto);
+    shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByCaptainId(team_controller->getUser()->getId());
+    shared_ptr<vector<PlayerDTO>> all_my_players_dto = make_shared<vector<PlayerDTO>>();
+    for (auto& team : *teams_dto)
+    {
+        shared_ptr<vector<PlayerDTO>> tmp_my_players_dto = players_repository->getPlayersDTOByTeam(team.getId());
+        all_my_players_dto->insert(all_my_players_dto->end(), tmp_my_players_dto->begin(), tmp_my_players_dto->end());
+    }
+    my_players_table_model = make_shared<PlayersTableModel>(all_my_players_dto);
     ui->my_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->my_tableView->setModel(my_players_table_model.get());
     for (int i = 0; i < my_players_table_model->columnCount(); i++)
