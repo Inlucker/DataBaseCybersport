@@ -12,9 +12,12 @@ SOURCES += \
     Controllers/BaseController.cpp \
     Controllers/TeamController.cpp \
     Essensities/UserBL.cpp \
+    Essensities/playerbl.cpp \
     Logger.cpp \
+    Repositorys/IPlayersRepository.cpp \
     Repositorys/IUserRolesRepository.cpp \
     Repositorys/IUsersRepository.cpp \
+    Repositorys/PlayersRepository.cpp \
     Repositorys/UserRolesRepository.cpp \
     Repositorys/UsersRepository.cpp \
     Settings.cpp \
@@ -29,9 +32,12 @@ HEADERS += \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
     Essensities/UserBL.h \
+    Essensities/playerbl.h \
     Logger.h \
+    Repositorys/IPlayersRepository.h \
     Repositorys/IUserRolesRepository.h \
     Repositorys/IUsersRepository.h \
+    Repositorys/PlayersRepository.h \
     Repositorys/UserRolesRepository.h \
     Repositorys/UsersRepository.h \
     Settings.h \

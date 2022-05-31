@@ -9,6 +9,7 @@ using namespace std;
 
 #include "Essensities/UserBL.h"
 #include "Controllers/TeamController.h"
+#include "Repositorys/PlayersRepository.h"
 
 namespace Ui {
 class TeamWindow;
@@ -40,7 +41,7 @@ private:
 
     unique_ptr<TeamController> team_controller;
 
-    //shared_ptr<PlayersRepository> players_repository;
+    shared_ptr<PlayersRepository> players_repository;
 };
 
 #endif // TEAMWINDOW_H

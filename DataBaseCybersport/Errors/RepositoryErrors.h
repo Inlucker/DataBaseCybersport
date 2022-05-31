@@ -80,4 +80,37 @@ public:
     }
 };
 
+class GetPlayerError : public BaseError
+{
+public:
+    GetPlayerError(string info, string filename, int line, const char *time, string error = "Get player error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
+class InsertPlayerError : public BaseError
+{
+public:
+    InsertPlayerError(string info, string filename, int line, const char *time, string error = "Insert player error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
+class UpdatePlayerError : public BaseError
+{
+public:
+    UpdatePlayerError(string info, string filename, int line, const char *time, string error = "Update player error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
 #endif // REPOSITORYERRORS_H

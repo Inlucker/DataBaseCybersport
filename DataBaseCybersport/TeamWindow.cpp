@@ -11,6 +11,8 @@ TeamWindow::TeamWindow(QWidget *parent) :
     ui->setupUi(this);
 
     team_controller = make_unique<TeamController>();
+
+    players_repository = make_shared<PlayersRepository>();
 }
 
 TeamWindow::~TeamWindow()
@@ -23,8 +25,9 @@ void TeamWindow::login(shared_ptr<UserBL> user_bl, string role)
     team_controller->login(user_bl);
     //users_repository->setRole(user_bl->getRole(), user_bl->getRole());
     QVariant r(QString::fromStdString(role));
-    Settings::set(Settings::DBUser, Settings::DataBase) = r;
-    Settings::set(Settings::DBPass, Settings::DataBase) = r;
+    //ADD ROLE TEAM_CAPTAIN!
+    //Settings::set(Settings::DBUser, Settings::DataBase) = r;
+    //Settings::set(Settings::DBPass, Settings::DataBase) = r;
     updateFreePlayersList();
     //updateMyPlayerList();
 }
@@ -39,6 +42,10 @@ void TeamWindow::on_exit_btn_clicked()
 
 void TeamWindow::updateFreePlayersList()
 {
+    shared_ptr<vector<PlayerBL>> free_players = players_repository->getFreePlayers();
 
+    ui->free_players_listWidget->clear();
+    for (auto &elem : *free_players)
+        ui->free_players_listWidget->addItem(QString::fromStdString(elem.getNickname()));
 }
 
