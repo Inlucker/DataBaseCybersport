@@ -86,9 +86,9 @@ QVariant TeamsTableModel::headerData(int section, Qt::Orientation orientation, i
             return QString("Average rating");
         }
     }
-    else if (role == Qt::DisplayRole && orientation == Qt::Vertical)
+    /*else if (role == Qt::DisplayRole && orientation == Qt::Vertical)
     {
         return QString::number(section);
-    }
+    }*/
     return QVariant();
 }

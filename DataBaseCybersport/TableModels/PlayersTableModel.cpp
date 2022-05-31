@@ -105,9 +105,9 @@ QVariant PlayersTableModel::headerData(int section, Qt::Orientation orientation,
             return QString("Rating");
         }
     }
-    else if (role == Qt::DisplayRole && orientation == Qt::Vertical)
+    /*else if (role == Qt::DisplayRole && orientation == Qt::Vertical)
     {
         return QString::number(section);
-    }
+    }*/
     return QVariant();
 }

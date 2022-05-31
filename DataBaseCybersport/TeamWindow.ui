@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1431</width>
-    <height>667</height>
+    <width>1270</width>
+    <height>689</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="delete_user_btn">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>780</x>
      <y>280</y>
      <width>201</width>
      <height>51</height>
@@ -34,7 +34,7 @@
   <widget class="QPushButton" name="delete_btn">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>780</x>
      <y>160</y>
      <width>201</width>
      <height>51</height>
@@ -52,7 +52,7 @@
   <widget class="QPushButton" name="exit_btn">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>780</x>
      <y>220</y>
      <width>201</width>
      <height>51</height>
@@ -70,7 +70,7 @@
   <widget class="QPushButton" name="add_btn">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>780</x>
      <y>100</y>
      <width>201</width>
      <height>51</height>
@@ -85,40 +85,10 @@
     <string>Add</string>
    </property>
   </widget>
-  <widget class="QTableView" name="free_tableView">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>701</width>
-     <height>321</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTableView" name="my_tableView">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>340</y>
-     <width>701</width>
-     <height>321</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QTableView" name="teams_tableView">
-   <property name="geometry">
-    <rect>
-     <x>720</x>
-     <y>340</y>
-     <width>701</width>
-     <height>321</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QComboBox" name="my_teams_comboBox">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>780</x>
      <y>40</y>
      <width>201</width>
      <height>51</height>
@@ -129,6 +99,80 @@
      <string/>
     </property>
    </item>
+  </widget>
+  <widget class="QGroupBox" name="groupBox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>0</y>
+     <width>761</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>8</pointsize>
+    </font>
+   </property>
+   <property name="title">
+    <string>Free players</string>
+   </property>
+   <widget class="QTableView" name="free_tableView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>761</width>
+      <height>311</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>340</y>
+     <width>621</width>
+     <height>341</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>My players</string>
+   </property>
+   <widget class="QTableView" name="my_tableView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>621</width>
+      <height>321</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>340</y>
+     <width>621</width>
+     <height>341</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>My teams</string>
+   </property>
+   <widget class="QTableView" name="teams_tableView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>621</width>
+      <height>321</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
