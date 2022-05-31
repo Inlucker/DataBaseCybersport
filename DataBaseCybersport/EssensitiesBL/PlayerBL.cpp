@@ -16,7 +16,7 @@ int PlayerBL::getId()
     return id;
 }
 
-int PlayerBL::getTeamId()
+int& PlayerBL::getTeamId()
 {
     return team_id;
 }

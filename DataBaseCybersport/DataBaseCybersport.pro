@@ -11,10 +11,11 @@ CONFIG += c++11
 SOURCES += \
     Controllers/BaseController.cpp \
     Controllers/TeamController.cpp \
-    Essensities/PlayerBL.cpp \
-    Essensities/PlayerDTO.cpp \
-    Essensities/TeamBL.cpp \
-    Essensities/UserBL.cpp \
+    EssensitiesBL/PlayerBL.cpp \
+    EssensitiesDTO/PlayerDTO.cpp \
+    EssensitiesBL/TeamBL.cpp \
+    EssensitiesDTO/TeamDTO.cpp \
+    EssensitiesBL/UserBL.cpp \
     Logger.cpp \
     Repositorys/CountriesRepository.cpp \
     Repositorys/ICountriesRepository.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
     Repositorys/UserRolesRepository.cpp \
     Repositorys/UsersRepository.cpp \
     Settings.cpp \
+    TableModels/TeamsTableModel.cpp \
     TeamWindow.cpp \
     main.cpp \
     BaseWindow.cpp
@@ -38,10 +40,11 @@ HEADERS += \
     Controllers/TeamController.h \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
-    Essensities/PlayerBL.h \
-    Essensities/PlayerDTO.h \
-    Essensities/TeamBL.h \
-    Essensities/UserBL.h \
+    EssensitiesBL/PlayerBL.h \
+    EssensitiesDTO/PlayerDTO.h \
+    EssensitiesBL/TeamBL.h \
+    EssensitiesDTO/TeamDTO.h \
+    EssensitiesBL/UserBL.h \
     Logger.h \
     Repositorys/CountriesRepository.h \
     Repositorys/ICountriesRepository.h \
@@ -55,6 +58,7 @@ HEADERS += \
     Repositorys/UserRolesRepository.h \
     Repositorys/UsersRepository.h \
     Settings.h \
+    TableModels/TeamsTableModel.h \
     TeamWindow.h
 
 FORMS += \

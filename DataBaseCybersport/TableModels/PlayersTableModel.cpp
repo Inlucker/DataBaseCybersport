@@ -19,7 +19,7 @@ int PlayersTableModel::rowCount(const QModelIndex &parent) const
 
 int PlayersTableModel::columnCount(const QModelIndex &parent) const
 {
-    return 8;
+    return 9;
 }
 
 QVariant PlayersTableModel::data(const QModelIndex &index, int role) const
@@ -32,38 +32,38 @@ QVariant PlayersTableModel::data(const QModelIndex &index, int role) const
         {
             case 0:
             {
-                /*if ((*players)[row].getTeam())
-                    return QString("%1").arg((*players)[row].getTeamId());
-                else
-                    return "Has no team";*/
-                return QString::fromStdString((*players)[row].getTeam());
+                return QString("%1").arg((*players)[row].getId());
             }
             case 1:
+            {
+                return QString::fromStdString((*players)[row].getTeam());
+            }
+            case 2:
             {
                 //return QString("%1").arg((*players)[row].getCountryId());
                 return QString::fromStdString((*players)[row].getCountry());
             }
-            case 2:
+            case 3:
             {
                 return QString::fromStdString((*players)[row].getNickname());
             }
-            case 3:
+            case 4:
             {
                 return QString::fromStdString((*players)[row].getFirstName());
             }
-            case 4:
+            case 5:
             {
                 return QString::fromStdString((*players)[row].getSecondName());
             }
-            case 5:
+            case 6:
             {
                 return QString("%1").arg((*players)[row].getBirthYear());
             }
-            case 6:
+            case 7:
             {
                 return QString::fromStdString((*players)[row].getMainRole());
             }
-            case 7:
+            case 8:
             {
                 return QString("%1").arg((*players)[row].getRating());
             }
@@ -86,20 +86,22 @@ QVariant PlayersTableModel::headerData(int section, Qt::Orientation orientation,
         switch (section)
         {
         case 0:
-            return QString("Team");
+            return QString("ID");
         case 1:
-            return QString("Country");
+            return QString("Team");
         case 2:
-            return QString("Nickname");
+            return QString("Country");
         case 3:
-            return QString("First name");
+            return QString("Nickname");
         case 4:
-            return QString("Second name");
+            return QString("First name");
         case 5:
-            return QString("Birth year");
+            return QString("Second name");
         case 6:
-            return QString("Main role");
+            return QString("Birth year");
         case 7:
+            return QString("Main role");
+        case 8:
             return QString("Rating");
         }
     }

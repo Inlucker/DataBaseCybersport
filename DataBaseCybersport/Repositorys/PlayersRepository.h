@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "IPlayersRepository.h"
-#include "Essensities/PlayerDTO.h"
+#include "EssensitiesDTO/PlayerDTO.h"
 
 class PlayersRepository : public IPlayersRepository
 {

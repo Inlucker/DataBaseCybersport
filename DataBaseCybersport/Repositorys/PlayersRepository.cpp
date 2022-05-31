@@ -285,7 +285,9 @@ void PlayersRepository::deletePlayer(int id)
 void PlayersRepository::updatePlayer(PlayerBL &player_bl, int id)
 {
     connect();
-    string team_id = to_string(player_bl.getTeamId());
+    string team_id = "NULL";
+    if (player_bl.getTeamId() != 0)
+        team_id = to_string(player_bl.getTeamId());
     string country_id = to_string(player_bl.getCountryId());
     string nickname = "'" + player_bl.getNickname() + "'";
     string first_name = "'" + player_bl.getFirstName() + "'";
@@ -294,7 +296,7 @@ void PlayersRepository::updatePlayer(PlayerBL &player_bl, int id)
     string main_role = "'" + player_bl.getMainRole() + "'";
     string rating = to_string(player_bl.getRating());
 
-    string query = "update Users set team_id = " + team_id;
+    string query = "update Players set team_id = " + team_id;
     query += ", country_id = " + country_id;
     query += ", nickname = " + nickname;
     query += ", first_name = " + first_name;

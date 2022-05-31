@@ -7,8 +7,8 @@
 
 using namespace std;
 
-#include "Essensities/UserBL.h"
-#include "Essensities/PlayerDTO.h"
+#include "EssensitiesBL/UserBL.h"
+#include "EssensitiesDTO/PlayerDTO.h"
 
 #include "Controllers/TeamController.h"
 

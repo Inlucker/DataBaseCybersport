@@ -2,7 +2,7 @@
 #define PLAYERSTABLEMODEL_H
 
 #include <QAbstractTableModel>
-#include "Essensities/PlayerDTO.h"
+#include "EssensitiesDTO/PlayerDTO.h"
 
 class PlayersTableModel : public QAbstractTableModel
 {
