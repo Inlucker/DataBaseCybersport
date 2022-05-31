@@ -17,6 +17,7 @@ using namespace std;
 #include "Repositorys/CountriesRepository.h"
 
 #include "TableModels/PlayersTableModel.h"
+#include "TableModels/TeamsTableModel.h"
 
 namespace Ui {
 class TeamWindow;
@@ -43,6 +44,7 @@ signals:
 private:
     void updateFreePlayersList();
     void updateMyPlayerList();
+    void updateTeamsList();
     void updateLists();
 
 private:
@@ -56,6 +58,7 @@ private:
 
     shared_ptr<PlayersTableModel> free_players_table_model;
     shared_ptr<PlayersTableModel> my_players_table_model;
+    shared_ptr<TeamsTableModel> teams_table_model;
 };
 
 #endif // TEAMWINDOW_H

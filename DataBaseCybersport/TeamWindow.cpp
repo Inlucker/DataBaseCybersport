@@ -22,6 +22,7 @@ TeamWindow::TeamWindow(QWidget *parent) :
 
     free_players_table_model = make_shared<PlayersTableModel>();
     my_players_table_model = make_shared<PlayersTableModel>();
+    teams_table_model = make_shared<TeamsTableModel>();
 }
 
 TeamWindow::~TeamWindow()
@@ -66,7 +67,7 @@ void TeamWindow::updateFreePlayersList()
 
 void TeamWindow::updateMyPlayerList()
 {
-    shared_ptr<vector<PlayerDTO>> my_players_dto = players_repository->getPlayersDTOByTeam(team_controller->getUser()->getId());
+    shared_ptr<vector<PlayerDTO>> my_players_dto = players_repository->getPlayersDTOByTeam(team_controller->getUser()->getId()); //FIX: change user id to team_id
     my_players_table_model = make_shared<PlayersTableModel>(my_players_dto);
     ui->my_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->my_tableView->setModel(my_players_table_model.get());
@@ -74,12 +75,22 @@ void TeamWindow::updateMyPlayerList()
         ui->my_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
+void TeamWindow::updateTeamsList()
+{
+    shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByCaptainId(team_controller->getUser()->getId());
+    teams_table_model = make_shared<TeamsTableModel>(teams_dto);
+    ui->teams_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->teams_tableView->setModel(teams_table_model.get());
+    for (int i = 0; i < teams_table_model->columnCount(); i++)
+        ui->teams_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+}
+
 void TeamWindow::updateLists()
 {
     updateFreePlayersList();
     updateMyPlayerList();
+    updateTeamsList();
 }
-
 
 void TeamWindow::on_add_btn_clicked()
 {

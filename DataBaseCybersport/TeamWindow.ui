@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1102</width>
+    <width>1431</width>
     <height>667</height>
    </rect>
   </property>
@@ -16,7 +16,7 @@
   <widget class="QPushButton" name="delete_user_btn">
    <property name="geometry">
     <rect>
-     <x>890</x>
+     <x>720</x>
      <y>280</y>
      <width>201</width>
      <height>51</height>
@@ -34,7 +34,7 @@
   <widget class="QPushButton" name="delete_btn">
    <property name="geometry">
     <rect>
-     <x>890</x>
+     <x>720</x>
      <y>160</y>
      <width>201</width>
      <height>51</height>
@@ -52,7 +52,7 @@
   <widget class="QPushButton" name="exit_btn">
    <property name="geometry">
     <rect>
-     <x>890</x>
+     <x>720</x>
      <y>220</y>
      <width>201</width>
      <height>51</height>
@@ -70,7 +70,7 @@
   <widget class="QPushButton" name="add_btn">
    <property name="geometry">
     <rect>
-     <x>890</x>
+     <x>720</x>
      <y>100</y>
      <width>201</width>
      <height>51</height>
@@ -90,7 +90,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>871</width>
+     <width>701</width>
      <height>321</height>
     </rect>
    </property>
@@ -100,7 +100,17 @@
     <rect>
      <x>10</x>
      <y>340</y>
-     <width>871</width>
+     <width>701</width>
+     <height>321</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTableView" name="teams_tableView">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>340</y>
+     <width>701</width>
      <height>321</height>
     </rect>
    </property>

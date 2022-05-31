@@ -18,7 +18,7 @@ public:
     string getName();
 
 private:
-    int id, country_id, sponosr_id, captain_id;
+    int id, country_id, sponsor_id, captain_id;
     string name;
 };
 
