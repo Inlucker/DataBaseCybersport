@@ -5,6 +5,7 @@ create or replace function whenDeleteTeamCaptain()
 returns trigger 
 as $$
 BEGIN
+	--RAISE notice 'old = %', (old.id);
 	UPDATE players
 	SET team_id = NULL
 	WHERE team_id IN
@@ -38,7 +39,7 @@ create or replace function whenDeleteStudioOwner()
 returns trigger 
 as $$
 BEGIN
-	RAISE notice 'old = %', (old.id);
+	--RAISE notice 'old = %', (old.id);
 	UPDATE commentators 
 	SET studio_id = NULL
 	WHERE studio_id IN

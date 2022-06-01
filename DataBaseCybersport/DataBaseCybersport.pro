@@ -12,6 +12,7 @@ SOURCES += \
     Controllers/BaseController.cpp \
     Controllers/StudioController.cpp \
     Controllers/TeamController.cpp \
+    Controllers/TournamentController.cpp \
     EssensitiesBL/CommentatorBL.cpp \
     EssensitiesBL/PlayerBL.cpp \
     EssensitiesDTO/CommentatorDTO.cpp \
@@ -41,6 +42,7 @@ SOURCES += \
     TableModels/StudiosTableModel.cpp \
     TableModels/TeamsTableModel.cpp \
     TeamWindow.cpp \
+    TournamentWindow.cpp \
     main.cpp \
     BaseWindow.cpp
 
@@ -49,6 +51,7 @@ HEADERS += \
     Controllers/BaseController.h \
     Controllers/StudioController.h \
     Controllers/TeamController.h \
+    Controllers/TournamentController.h \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
     EssensitiesBL/CommentatorBL.h \
@@ -79,12 +82,14 @@ HEADERS += \
     Settings.h \
     TableModels/StudiosTableModel.h \
     TableModels/TeamsTableModel.h \
-    TeamWindow.h
+    TeamWindow.h \
+    TournamentWindow.h
 
 FORMS += \
     BaseWindow.ui \
     StudioWindow.ui \
-    TeamWindow.ui
+    TeamWindow.ui \
+    TournamentWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
