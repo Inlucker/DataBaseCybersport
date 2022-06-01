@@ -94,13 +94,12 @@ void StudioWindow::updateLists()
 
 void StudioWindow::on_add_btn_clicked()
 {
-
     try
     {
         QModelIndexList selectedRows = ui->free_tableView->selectionModel()->selectedRows();
         if (selectedRows.size() <= 0)
         {
-            QMessageBox::information(this, "Error", "Выберите хотябы одного игрока из списка свободных");
+            QMessageBox::information(this, "Error", "Выберите хотябы одного комментатора из списка свободных");
             return;
         }
         for(auto& ind : selectedRows)
@@ -123,6 +122,37 @@ void StudioWindow::on_add_btn_clicked()
             int new_studio_id = studios_table_model->data(founded_index).toInt();
 
             com_bl->getStudioId() = new_studio_id;
+            commentator_repository->updateCommentator(*com_bl, id);
+        }
+        updateLists();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
+
+void StudioWindow::on_delete_btn_clicked()
+{
+    try
+    {
+        QModelIndexList selectedRows = ui->my_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() <= 0)
+        {
+            QMessageBox::information(this, "Error", "Выберите хотябы одного вашего комментатора из списка");
+            return;
+        }
+        for(auto& ind : selectedRows)
+        {
+            int id = ui->my_tableView->model()->data(ind).toInt();
+            shared_ptr<CommentatorBL> com_bl = commentator_repository->getCommentator(id);
+
+            com_bl->getStudioId() = 0;
             commentator_repository->updateCommentator(*com_bl, id);
         }
         updateLists();
