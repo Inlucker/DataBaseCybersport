@@ -13,14 +13,14 @@ from genTournamentTeams import generateTournamentTeams
 RECORDS_N = 1000
 
 generateUserRoles()
-generateUsers(RECORDS_N)
+organizers, owners, captains = generateUsers(RECORDS_N)
 COUNTRIES_N = generateCountries()
 generateSponsors(RECORDS_N, COUNTRIES_N)
-generateTeams(RECORDS_N, COUNTRIES_N)
+generateTeams(RECORDS_N, COUNTRIES_N, captains)
 generatePlayers(RECORDS_N, COUNTRIES_N)
-generateStudios(RECORDS_N, COUNTRIES_N)
+generateStudios(RECORDS_N, COUNTRIES_N, owners)
 generateCommentators(RECORDS_N, COUNTRIES_N)
-generateTournaments(RECORDS_N, COUNTRIES_N)
+generateTournaments(RECORDS_N, COUNTRIES_N, organizers)
 generateMatches(RECORDS_N)
 generateTournamentTeams(RECORDS_N)
 

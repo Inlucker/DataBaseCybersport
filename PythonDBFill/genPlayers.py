@@ -10,7 +10,7 @@ def generatePlayers(records_number, countries_n):
     players = dict()
     faker = Faker()
     f = open('Players.csv', 'w')
-    for i in range(records_number):
+    for i in range(records_number*5):
         now = datetime.datetime.now()
         min_year = now.year - 30
         max_year = now.year - 9

@@ -1,5 +1,6 @@
 from faker import Faker
 from random import randint
+from random import choice
 
 
 def genTeamName(faker):
@@ -10,12 +11,13 @@ def genTeamName(faker):
     # return faker.word().capitalize()
 
 
-def generateTournaments(records_number, countries_n):
+def generateTournaments(records_number, countries_n, organizers):
     faker = Faker()
     f = open('Tournaments.csv', 'w')
     for i in range(records_number):
         country_id = randint(1, countries_n)
-        organizer_id = randint(1, records_number)
+        # organizer_id = randint(1, records_number)
+        organizer_id = choice(organizers)
         name = genTeamName(faker)
         prize_pool = randint(100000, 10000000)
         line = "{0}|{1}|{2}|{3}\n".format(country_id,

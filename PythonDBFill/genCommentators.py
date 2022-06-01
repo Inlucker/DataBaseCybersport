@@ -6,7 +6,7 @@ import datetime
 def generateCommentators(records_number, countries_n):
     faker = Faker()
     f = open('Commentators.csv', 'w')
-    for i in range(records_number):
+    for i in range(records_number*5):
         studio_id = ""
         if (randint(0, 1)):
             studio_id = randint(1, records_number)
