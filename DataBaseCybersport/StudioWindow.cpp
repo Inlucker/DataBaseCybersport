@@ -13,9 +13,11 @@ StudioWindow::StudioWindow(QWidget *parent) :
     studio_controller = make_unique<StudioController>();
 
     commentator_repository = make_shared<CommentatorRepository>();
+    studio_repository = make_shared<StudioRepository>();
 
     free_coms_table_model = make_shared<CommentatorsTableModel>();
     my_coms_table_model = make_shared<CommentatorsTableModel>();
+    studios_table_model = make_shared<StudiosTableModel>();
 
     ui->delete_user_btn->hide();
 }
@@ -55,7 +57,6 @@ void StudioWindow::updateFreeCommentatorsList()
 void StudioWindow::updateMyCommentatorsList()
 {
     shared_ptr<vector<CommentatorDTO>> coms_dto = commentator_repository->getCommentatorsDTOByOwnerId(studio_controller->getUser()->getId());
-    qDebug() << coms_dto->size();
     my_coms_table_model = make_shared<CommentatorsTableModel>(coms_dto);
     ui->my_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->my_tableView->setModel(my_coms_table_model.get());
@@ -63,9 +64,27 @@ void StudioWindow::updateMyCommentatorsList()
         ui->my_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
+void StudioWindow::updateStudiosList()
+{
+    shared_ptr<vector<StudioDTO>> studios_dto = studio_repository->getStudiosDTOByOwnerId(studio_controller->getUser()->getId());
+
+    ui->my_studios_comboBox->clear();
+    for (auto& studio : *studios_dto)
+    {
+        ui->my_studios_comboBox->addItem(QString::fromStdString(studio.getName()));
+    }
+
+    studios_table_model = make_shared<StudiosTableModel>(studios_dto);
+    ui->studios_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->studios_tableView->setModel(studios_table_model.get());
+    for (int i = 0; i < studios_table_model->columnCount(); i++)
+        ui->studios_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+}
+
 void StudioWindow::updateLists()
 {
     updateFreeCommentatorsList();
     updateMyCommentatorsList();
+    updateStudiosList();
 }
 

@@ -17,6 +17,7 @@ SOURCES += \
     EssensitiesDTO/CommentatorDTO.cpp \
     EssensitiesDTO/PlayerDTO.cpp \
     EssensitiesBL/TeamBL.cpp \
+    EssensitiesDTO/StudioDTO.cpp \
     EssensitiesDTO/TeamDTO.cpp \
     EssensitiesBL/UserBL.cpp \
     Logger.cpp \
@@ -25,6 +26,7 @@ SOURCES += \
     Repositorys/ICommentatorsRepository.cpp \
     Repositorys/ICountriesRepository.cpp \
     Repositorys/ITeamsRepository.cpp \
+    Repositorys/StudioRepository.cpp \
     Repositorys/TeamsRepository.cpp \
     StudioWindow.cpp \
     TableModels/CommentatorsTableModel.cpp \
@@ -36,6 +38,7 @@ SOURCES += \
     Repositorys/UserRolesRepository.cpp \
     Repositorys/UsersRepository.cpp \
     Settings.cpp \
+    TableModels/StudiosTableModel.cpp \
     TableModels/TeamsTableModel.cpp \
     TeamWindow.cpp \
     main.cpp \
@@ -53,6 +56,7 @@ HEADERS += \
     EssensitiesDTO/CommentatorDTO.h \
     EssensitiesDTO/PlayerDTO.h \
     EssensitiesBL/TeamBL.h \
+    EssensitiesDTO/StudioDTO.h \
     EssensitiesDTO/TeamDTO.h \
     EssensitiesBL/UserBL.h \
     Logger.h \
@@ -61,6 +65,7 @@ HEADERS += \
     Repositorys/ICommentatorsRepository.h \
     Repositorys/ICountriesRepository.h \
     Repositorys/ITeamsRepository.h \
+    Repositorys/StudioRepository.h \
     Repositorys/TeamsRepository.h \
     StudioWindow.h \
     TableModels/CommentatorsTableModel.h \
@@ -72,6 +77,7 @@ HEADERS += \
     Repositorys/UserRolesRepository.h \
     Repositorys/UsersRepository.h \
     Settings.h \
+    TableModels/StudiosTableModel.h \
     TableModels/TeamsTableModel.h \
     TeamWindow.h
 

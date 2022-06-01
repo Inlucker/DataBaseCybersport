@@ -14,7 +14,12 @@ grant pg_read_all_data to guest;
 grant insert on users to guest;
 grant update on users_id_seq to guest;
 
---Создание canvas_user
+--Создание team_captain
 CREATE USER team_captain password 'team_captain';
---Добавление прав canvas_user
+--Добавление прав team_captain
 grant postgres to team_captain;
+
+--Создание studio_owner
+CREATE USER studio_owner password 'studio_owner';
+--Добавление прав studio_owner
+grant postgres to studio_owner;
