@@ -1,6 +1,9 @@
 #include "StudioWindow.h"
 #include "ui_StudioWindow.h"
 
+#include <QMessageBox>
+
+#include "Errors/BaseError.h"
 #include "Logger.h"
 #include "Settings.h"
 
@@ -86,5 +89,69 @@ void StudioWindow::updateLists()
     updateFreeCommentatorsList();
     updateMyCommentatorsList();
     updateStudiosList();
+}
+
+
+void StudioWindow::on_add_btn_clicked()
+{
+
+    try
+    {
+        QModelIndexList selectedRows = ui->free_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() <= 0)
+        {
+            QMessageBox::information(this, "Error", "Выберите хотябы одного игрока из списка свободных");
+            return;
+        }
+        for(auto& ind : selectedRows)
+        {
+            int id = ui->free_tableView->model()->data(ind).toInt();
+            shared_ptr<CommentatorBL> com_bl = commentator_repository->getCommentator(id);
+
+            QString new_studio = ui->my_studios_comboBox->currentText();
+            QModelIndex founded_index;
+            int row_count = studios_table_model->rowCount();
+            for (int i = 0; i < row_count; i++)
+            {
+                QModelIndex idx = studios_table_model->index(i, 3);
+                if (studios_table_model->data(idx).toString() == new_studio)
+                {
+                   founded_index = studios_table_model->index(i, 0);
+                   break;
+                }
+            }
+            int new_studio_id = studios_table_model->data(founded_index).toInt();
+
+            com_bl->getStudioId() = new_studio_id;
+            commentator_repository->updateCommentator(*com_bl, id);
+        }
+        updateLists();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
+
+void StudioWindow::on_free_tableView_clicked(const QModelIndex &index)
+{
+    ui->free_tableView->selectRow(index.row());
+}
+
+
+void StudioWindow::on_my_tableView_clicked(const QModelIndex &index)
+{
+    ui->my_tableView->selectRow(index.row());
+}
+
+
+void StudioWindow::on_studios_tableView_clicked(const QModelIndex &index)
+{
+    ui->studios_tableView->selectRow(index.row());
 }
 

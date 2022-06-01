@@ -29,6 +29,14 @@ signals:
 private slots:
     void on_exit_btn_clicked();
 
+    void on_add_btn_clicked();
+
+    void on_free_tableView_clicked(const QModelIndex &index);
+
+    void on_my_tableView_clicked(const QModelIndex &index);
+
+    void on_studios_tableView_clicked(const QModelIndex &index);
+
 private:
     void updateFreeCommentatorsList();
     void updateMyCommentatorsList();

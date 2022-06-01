@@ -12,8 +12,8 @@ public:
     CommentatorBL(int id, int studio_id, int country_id, string nickname, string first_name, string second_name, int birth_year, int popularity);
 
     int &getId();
-    int &getStudio();
-    int &getCountry();
+    int &getStudioId();
+    int &getCountryId();
     string &getNickname();
     string &getFirstName();
     string &getSecondName();

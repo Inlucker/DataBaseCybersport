@@ -16,12 +16,12 @@ int &CommentatorBL::getId()
     return id;
 }
 
-int &CommentatorBL::getStudio()
+int &CommentatorBL::getStudioId()
 {
     return studio_id;
 }
 
-int &CommentatorBL::getCountry()
+int &CommentatorBL::getCountryId()
 {
     return country_id;
 }
