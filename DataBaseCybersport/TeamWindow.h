@@ -12,6 +12,7 @@ using namespace std;
 
 #include "Controllers/TeamController.h"
 
+#include "Repositorys/UsersRepository.h"
 #include "Repositorys/PlayersRepository.h"
 #include "Repositorys/TeamsRepository.h"
 #include "Repositorys/CountriesRepository.h"
@@ -46,6 +47,8 @@ private slots:
 
     void on_teams_tableView_clicked(const QModelIndex &index);
 
+    void on_delete_user_btn_clicked();
+
 signals:
     void exit();
 
@@ -60,6 +63,7 @@ private:
 
     unique_ptr<TeamController> team_controller;
 
+    shared_ptr<UsersRepository> users_repository;
     shared_ptr<PlayersRepository> players_repository;
     shared_ptr<TeamsRepository> teams_repository;
     shared_ptr<CountriesRepository> countries_repository;

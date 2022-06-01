@@ -21,3 +21,6 @@ delete from Users where id=1001;
 
 insert into Players(team_id, country_id, nickname, first_name, second_name, birth_year, main_role, rating)
 values(NULL, 1, 'Inlucker', 'Arseny', 'Pronin', 2000, 'Offlaner', 7000);
+
+
+update tournaments set organizer_id = 4 where organizer_id = 3;

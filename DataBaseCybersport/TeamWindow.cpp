@@ -15,16 +15,16 @@ TeamWindow::TeamWindow(QWidget *parent) :
 
     team_controller = make_unique<TeamController>();
 
+    users_repository = make_shared<UsersRepository>();
     players_repository = make_shared<PlayersRepository>();
     teams_repository = make_shared<TeamsRepository>();
     countries_repository = make_shared<CountriesRepository>();
-
 
     free_players_table_model = make_shared<PlayersTableModel>();
     my_players_table_model = make_shared<PlayersTableModel>();
     teams_table_model = make_shared<TeamsTableModel>();
 
-    ui->delete_user_btn->hide();
+    //ui->delete_user_btn->hide();
 }
 
 TeamWindow::~TeamWindow()
@@ -196,5 +196,26 @@ void TeamWindow::on_my_tableView_clicked(const QModelIndex &index)
 void TeamWindow::on_teams_tableView_clicked(const QModelIndex &index)
 {
     ui->teams_tableView->selectRow(index.row());
+}
+
+
+void TeamWindow::on_delete_user_btn_clicked()
+{
+    try
+    {
+        qInfo(logUserAction()) << "Pressed DELETE THIS USER button";
+        users_repository->deleteUser(team_controller->getUser()->getId());
+        this->hide();
+        team_controller->logout();
+        emit exit();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
 }
 

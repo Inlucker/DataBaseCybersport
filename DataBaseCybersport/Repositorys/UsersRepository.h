@@ -15,6 +15,7 @@ public:
     virtual ~UsersRepository() = default;
 
     virtual shared_ptr<UserBL> getUser(string login, string password) override;
+    shared_ptr<UserBL> getUser(int id);
     shared_ptr<UserBL> getUserByLogin(string name);
     virtual void addUser(UserBL& user) override;
     virtual void deleteUser(int id) override;

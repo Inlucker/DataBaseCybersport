@@ -2,10 +2,14 @@
 REASSIGN OWNED BY guest TO postgres;
 DROP OWNED BY guest;
 drop role guest;
---Удаление canvas_user
+--Удаление team_captain
 REASSIGN OWNED BY team_captain TO postgres;
 DROP OWNED BY team_captain;
 drop role team_captain;
+--Удаление studio_owner
+REASSIGN OWNED BY studio_owner TO postgres;
+DROP OWNED BY studio_owner;
+drop role studio_owner;
 
 --Создание guest
 CREATE USER guest password 'guest';

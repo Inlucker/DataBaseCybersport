@@ -43,6 +43,42 @@ shared_ptr<UserBL> UsersRepository::getUser(string login, string password)
         throw LoginError("login or password", __FILE__, __LINE__, ctime(&t_time));
 }
 
+shared_ptr<UserBL> UsersRepository::getUser(int id)
+{
+    connect();
+    string query = "select * from Users where id=" + to_string(id) + ";";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        if (PQresultStatus(res) == PGRES_TUPLES_OK && PQntuples(res))
+        {
+            int ID = atoi(PQgetvalue (res, 0, 0));
+            int role_id = atoi(PQgetvalue (res, 0, 1));
+            string login = PQgetvalue (res, 0, 2);
+            string password = PQgetvalue (res, 0, 3);
+
+            return make_shared<UserBL>(ID, role_id, password, login);
+        }
+        else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    time_t t_time = time(NULL);
+    if (flag)
+        throw GetUsersError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+    else
+        throw GetUsersError("Unexpected getUser error", __FILE__, __LINE__, ctime(&t_time));
+}
+
 shared_ptr<UserBL> UsersRepository::getUserByLogin(string name)
 {
     connect();
