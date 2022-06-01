@@ -15,6 +15,7 @@ StudioWindow::StudioWindow(QWidget *parent) :
 
     studio_controller = make_unique<StudioController>();
 
+    users_repository = make_shared<UsersRepository>();
     commentator_repository = make_shared<CommentatorRepository>();
     studio_repository = make_shared<StudioRepository>();
 
@@ -22,7 +23,7 @@ StudioWindow::StudioWindow(QWidget *parent) :
     my_coms_table_model = make_shared<CommentatorsTableModel>();
     studios_table_model = make_shared<StudiosTableModel>();
 
-    ui->delete_user_btn->hide();
+    //ui->delete_user_btn->hide();
 }
 
 StudioWindow::~StudioWindow()
@@ -183,5 +184,26 @@ void StudioWindow::on_my_tableView_clicked(const QModelIndex &index)
 void StudioWindow::on_studios_tableView_clicked(const QModelIndex &index)
 {
     ui->studios_tableView->selectRow(index.row());
+}
+
+
+void StudioWindow::on_delete_user_btn_clicked()
+{
+    try
+    {
+        qInfo(logUserAction()) << "Pressed DELETE THIS USER button";
+        users_repository->deleteUser(studio_controller->getUser()->getId());
+        this->hide();
+        studio_controller->logout();
+        emit exit();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
 }
 

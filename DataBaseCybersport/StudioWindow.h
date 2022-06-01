@@ -4,6 +4,7 @@
 #include <QWidget>
 
 #include "Controllers/StudioController.h"
+#include "Repositorys/UsersRepository.h"
 #include "Repositorys/CommentatorRepository.h"
 #include "Repositorys/StudioRepository.h"
 #include "TableModels/CommentatorsTableModel.h"
@@ -39,6 +40,8 @@ private slots:
 
     void on_studios_tableView_clicked(const QModelIndex &index);
 
+    void on_delete_user_btn_clicked();
+
 private:
     void updateFreeCommentatorsList();
     void updateMyCommentatorsList();
@@ -50,6 +53,7 @@ private:
 
     unique_ptr<StudioController> studio_controller;
 
+    shared_ptr<UsersRepository> users_repository;
     shared_ptr<CommentatorRepository> commentator_repository;
     shared_ptr<StudioRepository> studio_repository;
 

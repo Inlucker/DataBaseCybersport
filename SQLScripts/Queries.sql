@@ -23,4 +23,7 @@ insert into Players(team_id, country_id, nickname, first_name, second_name, birt
 values(NULL, 1, 'Inlucker', 'Arseny', 'Pronin', 2000, 'Offlaner', 7000);
 
 
+--For testing triggers
 update tournaments set organizer_id = 4 where organizer_id = 3;
+
+update tournaments set organizer_id = 4 where organizer_id = 9;
