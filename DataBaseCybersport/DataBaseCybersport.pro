@@ -27,6 +27,7 @@ SOURCES += \
     Repositorys/ITeamsRepository.cpp \
     Repositorys/TeamsRepository.cpp \
     StudioWindow.cpp \
+    TableModels/CommentatorsTableModel.cpp \
     TableModels/PlayersTableModel.cpp \
     Repositorys/IPlayersRepository.cpp \
     Repositorys/IUserRolesRepository.cpp \
@@ -62,6 +63,7 @@ HEADERS += \
     Repositorys/ITeamsRepository.h \
     Repositorys/TeamsRepository.h \
     StudioWindow.h \
+    TableModels/CommentatorsTableModel.h \
     TableModels/PlayersTableModel.h \
     Repositorys/IPlayersRepository.h \
     Repositorys/IUserRolesRepository.h \

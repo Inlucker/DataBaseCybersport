@@ -7,7 +7,9 @@ def generateCommentators(records_number, countries_n):
     faker = Faker()
     f = open('Commentators.csv', 'w')
     for i in range(records_number):
-        studio_id = randint(1, records_number)
+        studio_id = ""
+        if (randint(0, 1)):
+            studio_id = randint(1, records_number)
         country_id = randint(1, countries_n)
         now = datetime.datetime.now()
         min_year = now.year - 30

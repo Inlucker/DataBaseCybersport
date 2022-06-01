@@ -5,6 +5,7 @@
 
 #include "Controllers/StudioController.h"
 #include "Repositorys/CommentatorRepository.h"
+#include "TableModels/CommentatorsTableModel.h"
 
 namespace Ui {
 class StudioWindow;
@@ -38,6 +39,8 @@ private:
     unique_ptr<StudioController> studio_controller;
 
     shared_ptr<CommentatorRepository> commentator_repository;
+
+    shared_ptr<CommentatorsTableModel> coms_table_model;
 };
 
 #endif // STUDIOWINDOW_H

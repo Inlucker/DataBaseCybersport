@@ -135,4 +135,15 @@ public:
     }
 };
 
+class GetCommentatorError : public BaseError
+{
+public:
+    GetCommentatorError(string info, string filename, int line, const char *time, string error = "Get commentator error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
 #endif // REPOSITORYERRORS_H
