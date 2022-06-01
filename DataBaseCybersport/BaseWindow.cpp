@@ -73,3 +73,28 @@ void BaseWindow::resetBaseWindow()
     Settings::set(Settings::DBPass, Settings::DataBase) = "guest";
 }
 
+
+void BaseWindow::on_registrate_btn_clicked()
+{
+
+    try
+    {
+        qInfo(logUserAction()) << "Pressed on registrate button";
+        string login = ui->login_lineEdit->text().toStdString();
+        string password = ui->password_lineEdit->text().toStdString();
+        int role_id = ui->role_comboBox->currentIndex() + 2;
+        UserBL user_bl(0, role_id, login, password);
+        user_repository->addUser(user_bl);
+        QMessageBox::information(this, "Registration", "Registration completed");
+        qInfo(logUserAction()) << "Registration completed";
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
