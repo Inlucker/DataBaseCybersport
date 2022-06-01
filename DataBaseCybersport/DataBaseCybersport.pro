@@ -24,6 +24,7 @@ SOURCES += \
     EssensitiesBL/UserBL.cpp \
     EssensitiesDTO/TournamentDTO.cpp \
     Logger.cpp \
+    MatchCreationDialog.cpp \
     Repositorys/CommentatorRepository.cpp \
     Repositorys/CountriesRepository.cpp \
     Repositorys/ICommentatorsRepository.cpp \
@@ -71,6 +72,7 @@ HEADERS += \
     EssensitiesBL/UserBL.h \
     EssensitiesDTO/TournamentDTO.h \
     Logger.h \
+    MatchCreationDialog.h \
     Repositorys/CommentatorRepository.h \
     Repositorys/CountriesRepository.h \
     Repositorys/ICommentatorsRepository.h \
@@ -99,6 +101,7 @@ HEADERS += \
 
 FORMS += \
     BaseWindow.ui \
+    MatchCreationDialog.ui \
     StudioWindow.ui \
     TeamWindow.ui \
     TournamentWindow.ui

@@ -136,6 +136,24 @@
     </property>
    </widget>
   </widget>
+  <widget class="QPushButton" name="create_match_btn">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>430</y>
+     <width>201</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Create Match</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

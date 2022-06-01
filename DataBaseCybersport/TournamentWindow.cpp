@@ -13,6 +13,8 @@ TournamentWindow::TournamentWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    match_creation_dialog = make_unique<MatchCreationDialog>();
+
     tournament_controller = make_unique<TournamentController>();
 
     users_repository = make_shared<UsersRepository>();
@@ -119,5 +121,23 @@ void TournamentWindow::on_matches_tableView_clicked(const QModelIndex &index)
 void TournamentWindow::on_teams_tableView_clicked(const QModelIndex &index)
 {
     ui->teams_tableView->selectRow(index.row());
+}
+
+
+void TournamentWindow::on_create_match_btn_clicked()
+{
+    try
+    {
+        match_creation_dialog->setup(tournament_controller->getUser()->getId());
+        match_creation_dialog->exec();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
 }
 

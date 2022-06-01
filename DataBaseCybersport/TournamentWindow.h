@@ -3,6 +3,7 @@
 
 #include <QWidget>
 
+#include "MatchCreationDialog.h"
 #include "Controllers/TournamentController.h"
 #include "Repositorys/UsersRepository.h"
 #include "Repositorys/TournamentsRepository.h"
@@ -40,12 +41,16 @@ private slots:
 
     void on_teams_tableView_clicked(const QModelIndex &index);
 
+    void on_create_match_btn_clicked();
+
 private:
     void updateTournamentsList();
     void updateMatchesTeamsLists();
 
 private:
     Ui::TournamentWindow *ui;
+
+    unique_ptr<MatchCreationDialog> match_creation_dialog;
 
     unique_ptr<TournamentController> tournament_controller;
 

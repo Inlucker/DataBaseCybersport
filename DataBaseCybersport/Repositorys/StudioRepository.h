@@ -16,6 +16,7 @@ public:
     ~StudioRepository() = default;
 
     shared_ptr<vector<StudioDTO>> getStudiosDTOByOwnerId(int owner_id);
+    shared_ptr<vector<StudioDTO>> getAllStudios();
 
 protected:
     void connect();
