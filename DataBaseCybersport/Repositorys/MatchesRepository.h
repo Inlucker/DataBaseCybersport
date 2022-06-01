@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "EssensitiesDTO/MatchDTO.h"
+#include "EssensitiesBL/MatchBL.h"
 
 class MatchesRepository
 {
@@ -15,6 +16,7 @@ public:
     MatchesRepository();
 
     shared_ptr<vector<MatchDTO>> getMatchesDTOByTournament(int tournament_id);
+    void addMatch(MatchBL& match);
 
 protected:
     void connect();

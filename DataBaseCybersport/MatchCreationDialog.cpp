@@ -17,6 +17,7 @@ MatchCreationDialog::MatchCreationDialog(QWidget *parent) :
     teams_repository = make_shared<TeamsRepository>();
     studio_repository = make_shared<StudioRepository>();
     commentator_repository = make_shared<CommentatorRepository>();
+    matches_repository= make_shared<MatchesRepository>();
 
     QList<QAbstractButton *> buttons = ui->buttonBox->buttons();
     for (auto &btn : buttons)
@@ -24,6 +25,8 @@ MatchCreationDialog::MatchCreationDialog(QWidget *parent) :
         btn->setMinimumWidth(181);
         btn->setMinimumHeight(41);
     }
+
+    ui->dateEdit->setDate(my_date.currentDate());
 }
 
 MatchCreationDialog::~MatchCreationDialog()
@@ -46,6 +49,7 @@ void MatchCreationDialog::setup(int org_id)
 
 void MatchCreationDialog::on_tournament_comboBox_currentIndexChanged(int index)
 {
+    tournament_id = tournaments_id[index];
     updateTeamsList(tournaments_id[index]);
 }
 
@@ -180,5 +184,26 @@ void MatchCreationDialog::on_choose_commentator_btn_clicked()
 void MatchCreationDialog::on_dateEdit_dateChanged(const QDate &date)
 {
     my_date = date;
+}
+
+
+void MatchCreationDialog::on_buttonBox_accepted()
+{
+    if (team1_id && team2_id && studio_id && commentator_id && tournament_id && my_date.isValid())
+    {
+        string date = "";
+        date += to_string(my_date.year()) + "-";
+        date += to_string(my_date.month()) + "-";
+        date += to_string(my_date.day());
+
+        MatchBL new_match(team1_id, team2_id, 0, studio_id, commentator_id, tournament_id, date);
+        qDebug() << QString::fromStdString(date);
+        //matches_repository->addMatch(new_match);
+    }
+    else
+    {
+        QMessageBox::information(this, "Error", "Выберите все параметры");
+
+    }
 }
 

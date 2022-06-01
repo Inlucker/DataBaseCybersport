@@ -13,6 +13,7 @@
 #include "Repositorys/TeamsRepository.h"
 #include "Repositorys/StudioRepository.h"
 #include "Repositorys/CommentatorRepository.h"
+#include "Repositorys/MatchesRepository.h"
 
 namespace Ui {
 class MatchCreationDialog;
@@ -47,6 +48,8 @@ private slots:
 
     void on_dateEdit_dateChanged(const QDate &date);
 
+    void on_buttonBox_accepted();
+
 private:
     void updateTeamsList(int tournament_id);
     void updateStudiosList();
@@ -63,8 +66,10 @@ private:
     shared_ptr<TeamsRepository> teams_repository;
     shared_ptr<StudioRepository> studio_repository;
     shared_ptr<CommentatorRepository> commentator_repository;
+    shared_ptr<MatchesRepository> matches_repository;
 
     vector<int> tournaments_id;
+    int tournament_id = 0;
     int team1_id = 0;
     int team2_id = 0;
     int studio_id = 0;

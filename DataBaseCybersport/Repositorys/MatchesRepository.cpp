@@ -52,6 +52,50 @@ shared_ptr<vector<MatchDTO> > MatchesRepository::getMatchesDTOByTournament(int t
     return vec;
 }
 
+void MatchesRepository::addMatch(MatchBL &match)
+{
+    connect();
+
+    string team1_id = to_string(match.getTeam1Id());
+    string team2_id = to_string(match.getTeam2Id());
+    string winner_id = to_string(match.getWinnerId());
+    string studio_id = to_string(match.getStudioId());
+    string commentator_id = to_string(match.getCommentatorId());
+    string tournament_id = to_string(match.getTournamentId());
+    string date = "'" + match.getDate() + "'";
+
+
+    string query = "insert into Matches values(";
+    query += team1_id + ", ";
+    query += team2_id + ", ";
+    query += winner_id + ", ";
+    query += studio_id + ", ";
+    query += commentator_id + ", ";
+    query += tournament_id + ", ";
+    query += date + ");";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    if (flag)
+    {
+        time_t t_time = time(NULL);
+        throw InsertMatchError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+    }
+}
+
 void MatchesRepository::connect()
 {
     string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();

@@ -14,6 +14,7 @@ SOURCES += \
     Controllers/TeamController.cpp \
     Controllers/TournamentController.cpp \
     EssensitiesBL/CommentatorBL.cpp \
+    EssensitiesBL/MatchBL.cpp \
     EssensitiesBL/PlayerBL.cpp \
     EssensitiesDTO/CommentatorDTO.cpp \
     EssensitiesDTO/MatchDTO.cpp \
@@ -62,6 +63,7 @@ HEADERS += \
     Errors/BaseError.h \
     Errors/RepositoryErrors.h \
     EssensitiesBL/CommentatorBL.h \
+    EssensitiesBL/MatchBL.h \
     EssensitiesBL/PlayerBL.h \
     EssensitiesDTO/CommentatorDTO.h \
     EssensitiesDTO/MatchDTO.h \
