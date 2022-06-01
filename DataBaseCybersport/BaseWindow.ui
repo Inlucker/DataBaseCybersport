@@ -62,7 +62,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>david64</string>
+     <string>peggyburton</string>
     </property>
    </widget>
    <widget class="QPushButton" name="login_btn">

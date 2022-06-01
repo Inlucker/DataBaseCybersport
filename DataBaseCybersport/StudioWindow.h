@@ -40,7 +40,8 @@ private:
 
     shared_ptr<CommentatorRepository> commentator_repository;
 
-    shared_ptr<CommentatorsTableModel> coms_table_model;
+    shared_ptr<CommentatorsTableModel> free_coms_table_model;
+    shared_ptr<CommentatorsTableModel> my_coms_table_model;
 };
 
 #endif // STUDIOWINDOW_H

@@ -14,7 +14,8 @@ StudioWindow::StudioWindow(QWidget *parent) :
 
     commentator_repository = make_shared<CommentatorRepository>();
 
-    coms_table_model = make_shared<CommentatorsTableModel>();
+    free_coms_table_model = make_shared<CommentatorsTableModel>();
+    my_coms_table_model = make_shared<CommentatorsTableModel>();
 
     ui->delete_user_btn->hide();
 }
@@ -44,15 +45,27 @@ void StudioWindow::on_exit_btn_clicked()
 void StudioWindow::updateFreeCommentatorsList()
 {
     shared_ptr<vector<CommentatorDTO>> coms_dto = commentator_repository->getCommentatorsDTOByStudioId(0);
-    coms_table_model = make_shared<CommentatorsTableModel>(coms_dto);
+    free_coms_table_model = make_shared<CommentatorsTableModel>(coms_dto);
     ui->free_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->free_tableView->setModel(coms_table_model.get());
-    for (int i = 0; i < coms_table_model->columnCount(); i++)
+    ui->free_tableView->setModel(free_coms_table_model.get());
+    for (int i = 0; i < free_coms_table_model->columnCount(); i++)
         ui->free_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+}
+
+void StudioWindow::updateMyCommentatorsList()
+{
+    shared_ptr<vector<CommentatorDTO>> coms_dto = commentator_repository->getCommentatorsDTOByOwnerId(studio_controller->getUser()->getId());
+    qDebug() << coms_dto->size();
+    my_coms_table_model = make_shared<CommentatorsTableModel>(coms_dto);
+    ui->my_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->my_tableView->setModel(my_coms_table_model.get());
+    for (int i = 0; i < my_coms_table_model->columnCount(); i++)
+        ui->my_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
 void StudioWindow::updateLists()
 {
     updateFreeCommentatorsList();
+    updateMyCommentatorsList();
 }
 

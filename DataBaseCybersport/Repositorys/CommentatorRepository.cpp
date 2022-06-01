@@ -65,6 +65,57 @@ shared_ptr<vector<CommentatorDTO> > CommentatorRepository::getCommentatorsDTOByS
     return vec;
 }
 
+shared_ptr<vector<CommentatorDTO> > CommentatorRepository::getCommentatorsDTOByOwnerId(int owner_id)
+{
+    connect();
+    string query = "select * FROM commentators_view where owner_id ";
+
+    if (owner_id == 0)
+        query += "is NULL;";
+    else
+        query += "=" + to_string(owner_id) + " order by studio_id, id;";
+
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    shared_ptr<vector<CommentatorDTO>> vec = make_shared<vector<CommentatorDTO>>();
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        int rows_n = PQntuples(res);
+        if (PQresultStatus(res) == PGRES_TUPLES_OK && rows_n)
+        {
+            for (int i = 0; i < rows_n; i++)
+            {
+                int ID = atoi(PQgetvalue (res, i, 0));
+                string studio = PQgetvalue (res, i, 1);
+                string country = PQgetvalue (res, i, 2);
+                string nickname = PQgetvalue (res, i, 3);
+                string first_name = PQgetvalue (res, i, 4);
+                string second_name = PQgetvalue (res, i, 5);
+                int birth_year = atoi(PQgetvalue (res, i, 6));
+                int rating = atoi(PQgetvalue (res, i, 7));
+
+                vec->push_back(CommentatorDTO(ID, studio, country, nickname, first_name, second_name, birth_year, rating));
+            }
+        }
+        else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    time_t t_time = time(NULL);
+    if (flag)
+        throw GetCommentatorError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+
+    return vec;
+}
+
 void CommentatorRepository::addCommentator(CommentatorBL &com_bl)
 {
 

@@ -15,6 +15,7 @@ public:
 
     virtual shared_ptr<CommentatorBL> getCommentator(int id) override;
     shared_ptr<vector<CommentatorDTO>> getCommentatorsDTOByStudioId(int studio_id);
+    shared_ptr<vector<CommentatorDTO>> getCommentatorsDTOByOwnerId(int owner_id);
     virtual void addCommentator(CommentatorBL& com_bl) override;
     virtual void deleteCommentator(int id) override;
     virtual void updateCommentator(CommentatorBL& com_bl, int id) override;
