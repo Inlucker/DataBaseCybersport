@@ -6,7 +6,9 @@
 #include "Controllers/TournamentController.h"
 #include "Repositorys/UsersRepository.h"
 #include "Repositorys/TournamentsRepository.h"
+#include "Repositorys/MatchesRepository.h"
 #include "TableModels/TournamentsTableModel.h"
+#include "TableModels/MatchesTableModel.h"
 
 namespace Ui {
 class TournamentWindow;
@@ -28,8 +30,15 @@ signals:
 private slots:
     void on_exit_btn_clicked();
 
+    void on_get_mathces_btn_clicked();
+
+    void on_tournaments_tableView_clicked(const QModelIndex &index);
+
+    void on_matches_tableView_clicked(const QModelIndex &index);
+
 private:
     void updateTournamentsList();
+    void updateMatchesList();
 
 private:
     Ui::TournamentWindow *ui;
@@ -38,8 +47,10 @@ private:
 
     shared_ptr<UsersRepository> users_repository;
     shared_ptr<TournamentsRepository> tournaments_repository;
+    shared_ptr<MatchesRepository> matches_repository;
 
     shared_ptr<TournamentsTableModel> tournaments_table_model;
+    shared_ptr<MatchesTableModel> matches_table_model;
 };
 
 #endif // TOURNAMENTWINDOW_H

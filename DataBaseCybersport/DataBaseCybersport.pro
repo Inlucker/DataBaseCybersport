@@ -16,6 +16,7 @@ SOURCES += \
     EssensitiesBL/CommentatorBL.cpp \
     EssensitiesBL/PlayerBL.cpp \
     EssensitiesDTO/CommentatorDTO.cpp \
+    EssensitiesDTO/MatchDTO.cpp \
     EssensitiesDTO/PlayerDTO.cpp \
     EssensitiesBL/TeamBL.cpp \
     EssensitiesDTO/StudioDTO.cpp \
@@ -28,11 +29,13 @@ SOURCES += \
     Repositorys/ICommentatorsRepository.cpp \
     Repositorys/ICountriesRepository.cpp \
     Repositorys/ITeamsRepository.cpp \
+    Repositorys/MatchesRepository.cpp \
     Repositorys/StudioRepository.cpp \
     Repositorys/TeamsRepository.cpp \
     Repositorys/TournamentsRepository.cpp \
     StudioWindow.cpp \
     TableModels/CommentatorsTableModel.cpp \
+    TableModels/MatchesTableModel.cpp \
     TableModels/PlayersTableModel.cpp \
     Repositorys/IPlayersRepository.cpp \
     Repositorys/IUserRolesRepository.cpp \
@@ -60,6 +63,7 @@ HEADERS += \
     EssensitiesBL/CommentatorBL.h \
     EssensitiesBL/PlayerBL.h \
     EssensitiesDTO/CommentatorDTO.h \
+    EssensitiesDTO/MatchDTO.h \
     EssensitiesDTO/PlayerDTO.h \
     EssensitiesBL/TeamBL.h \
     EssensitiesDTO/StudioDTO.h \
@@ -72,11 +76,13 @@ HEADERS += \
     Repositorys/ICommentatorsRepository.h \
     Repositorys/ICountriesRepository.h \
     Repositorys/ITeamsRepository.h \
+    Repositorys/MatchesRepository.h \
     Repositorys/StudioRepository.h \
     Repositorys/TeamsRepository.h \
     Repositorys/TournamentsRepository.h \
     StudioWindow.h \
     TableModels/CommentatorsTableModel.h \
+    TableModels/MatchesTableModel.h \
     TableModels/PlayersTableModel.h \
     Repositorys/IPlayersRepository.h \
     Repositorys/IUserRolesRepository.h \

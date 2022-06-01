@@ -70,3 +70,28 @@ FROM studios s
 order by s.id;
 
 --select * from studios_view;
+
+drop view if exists tournaments_view;
+create or replace VIEW tournaments_view AS
+SELECT t.id, c.name as country, u.login as organizer, t.name, t.prizepool, t.country_id, t.organizer_id
+FROM tournaments t
+	LEFT OUTER JOIN countries c  on c.id = t.country_id
+	LEFT OUTER JOIN users u      on u.id = t.organizer_id
+order by t.id;
+
+--select * from tournaments_view;
+
+drop view if exists matches_view;
+create or replace VIEW matches_view AS
+SELECT t1.name as team1, t2.name as team2, w.name as winner, s.name as studio, c.nickname as commentator, t.name as tournament, m.date,
+		m.team1_id, m.team2_id, m.winner_id, m.studio_id, m.commentator_id, m.tournament_id
+FROM matches m
+	LEFT OUTER JOIN teams t1 on m.team1_id = t1.id
+	LEFT OUTER JOIN teams t2 on m.team2_id = t2.id
+	LEFT OUTER JOIN teams w  on m.winner_id = w.id
+	LEFT OUTER JOIN studios s  on m.studio_id = s.id
+	LEFT OUTER JOIN commentators c  on m.commentator_id = c.id
+	LEFT OUTER JOIN tournaments t  on m.tournament_id = t.id
+order by m.date;
+
+--select * from matches_view;
