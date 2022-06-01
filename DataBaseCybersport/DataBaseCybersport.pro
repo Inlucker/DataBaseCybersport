@@ -21,6 +21,7 @@ SOURCES += \
     EssensitiesDTO/StudioDTO.cpp \
     EssensitiesDTO/TeamDTO.cpp \
     EssensitiesBL/UserBL.cpp \
+    EssensitiesDTO/TournamentDTO.cpp \
     Logger.cpp \
     Repositorys/CommentatorRepository.cpp \
     Repositorys/CountriesRepository.cpp \
@@ -29,6 +30,7 @@ SOURCES += \
     Repositorys/ITeamsRepository.cpp \
     Repositorys/StudioRepository.cpp \
     Repositorys/TeamsRepository.cpp \
+    Repositorys/TournamentsRepository.cpp \
     StudioWindow.cpp \
     TableModels/CommentatorsTableModel.cpp \
     TableModels/PlayersTableModel.cpp \
@@ -41,6 +43,7 @@ SOURCES += \
     Settings.cpp \
     TableModels/StudiosTableModel.cpp \
     TableModels/TeamsTableModel.cpp \
+    TableModels/TournamentsTableModel.cpp \
     TeamWindow.cpp \
     TournamentWindow.cpp \
     main.cpp \
@@ -62,6 +65,7 @@ HEADERS += \
     EssensitiesDTO/StudioDTO.h \
     EssensitiesDTO/TeamDTO.h \
     EssensitiesBL/UserBL.h \
+    EssensitiesDTO/TournamentDTO.h \
     Logger.h \
     Repositorys/CommentatorRepository.h \
     Repositorys/CountriesRepository.h \
@@ -70,6 +74,7 @@ HEADERS += \
     Repositorys/ITeamsRepository.h \
     Repositorys/StudioRepository.h \
     Repositorys/TeamsRepository.h \
+    Repositorys/TournamentsRepository.h \
     StudioWindow.h \
     TableModels/CommentatorsTableModel.h \
     TableModels/PlayersTableModel.h \
@@ -82,6 +87,7 @@ HEADERS += \
     Settings.h \
     TableModels/StudiosTableModel.h \
     TableModels/TeamsTableModel.h \
+    TableModels/TournamentsTableModel.h \
     TeamWindow.h \
     TournamentWindow.h
 

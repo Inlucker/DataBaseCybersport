@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1299</width>
+    <width>1307</width>
     <height>727</height>
    </rect>
   </property>
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="delete_this_user_btn">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>140</y>
+     <x>660</x>
+     <y>260</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -34,8 +34,8 @@
   <widget class="QPushButton" name="exit_btn">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>80</y>
+     <x>660</x>
+     <y>200</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -47,6 +47,16 @@
    </property>
    <property name="text">
     <string>EXIT</string>
+   </property>
+  </widget>
+  <widget class="QTableView" name="tournaments_tableView">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>641</width>
+     <height>301</height>
+    </rect>
    </property>
   </widget>
  </widget>

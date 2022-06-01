@@ -10,6 +10,11 @@ drop role team_captain;
 REASSIGN OWNED BY studio_owner TO postgres;
 DROP OWNED BY studio_owner;
 drop role studio_owner;
+--Удаление studio_owner
+REASSIGN OWNED BY tournament_organizer TO postgres;
+DROP OWNED BY tournament_organizer;
+drop role tournament_organizer;
+
 
 --Создание guest
 CREATE USER guest password 'guest';
@@ -27,3 +32,8 @@ grant postgres to team_captain;
 CREATE USER studio_owner password 'studio_owner';
 --Добавление прав studio_owner
 grant postgres to studio_owner;
+
+--Создание tournament_organizer
+CREATE USER tournament_organizer password 'tournament_organizer';
+--Добавление прав tournament_organizer
+grant postgres to tournament_organizer;

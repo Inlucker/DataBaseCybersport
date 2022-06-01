@@ -5,6 +5,8 @@
 
 #include "Controllers/TournamentController.h"
 #include "Repositorys/UsersRepository.h"
+#include "Repositorys/TournamentsRepository.h"
+#include "TableModels/TournamentsTableModel.h"
 
 namespace Ui {
 class TournamentWindow;
@@ -27,11 +29,17 @@ private slots:
     void on_exit_btn_clicked();
 
 private:
+    void updateTournamentsList();
+
+private:
     Ui::TournamentWindow *ui;
 
     unique_ptr<TournamentController> tournament_controller;
 
     shared_ptr<UsersRepository> users_repository;
+    shared_ptr<TournamentsRepository> tournaments_repository;
+
+    shared_ptr<TournamentsTableModel> tournaments_table_model;
 };
 
 #endif // TOURNAMENTWINDOW_H
