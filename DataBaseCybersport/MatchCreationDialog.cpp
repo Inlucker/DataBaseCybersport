@@ -38,17 +38,42 @@ void MatchCreationDialog::setup(int org_id)
 {
     tournaments_id.clear();
     shared_ptr<vector<TournamentDTO>> tournaments_dto = tournaments_repository->getTournamentsDTOByOrgId(org_id);
+    ui->tournament_comboBox->clear();
     for (auto & tournament : *tournaments_dto)
     {
         tournaments_id.push_back(tournament.getId());
         ui->tournament_comboBox->addItem(QString::fromStdString(tournament.getName()));
     }
     updateStudiosList();
+
+    if (previous_tournament_index > 0 && ui->tournament_comboBox->count() > previous_tournament_index)
+    {
+        ui->tournament_comboBox->setCurrentIndex(previous_tournament_index);
+    }
+}
+
+void MatchCreationDialog::accept()
+{
+    if (!(team1_id && team2_id && studio_id && commentator_id && tournament_id && my_date.isValid()))
+    {
+        // Если некорректные данные
+        QMessageBox::information(this, "Error", "Выберите все параметры");
+        return;
+    }
+    else
+    {
+        QDialog::accept();
+    }
 }
 
 
 void MatchCreationDialog::on_tournament_comboBox_currentIndexChanged(int index)
 {
+    team1_id = 0;
+    ui->team1_label->setText("Team1");
+    team2_id = 0;
+    ui->team2_label->setText("Team2");
+
     tournament_id = tournaments_id[index];
     updateTeamsList(tournaments_id[index]);
 }
@@ -197,13 +222,18 @@ void MatchCreationDialog::on_buttonBox_accepted()
         date += to_string(my_date.day());
 
         MatchBL new_match(team1_id, team2_id, 0, studio_id, commentator_id, tournament_id, date);
-        qDebug() << QString::fromStdString(date);
-        //matches_repository->addMatch(new_match);
+        //qDebug() << QString::fromStdString(date);
+        matches_repository->addMatch(new_match);
     }
     else
     {
-        QMessageBox::information(this, "Error", "Выберите все параметры");
-
+        //QMessageBox::information(this, "Error", "Выберите все параметры");
     }
+}
+
+
+void MatchCreationDialog::on_buttonBox_rejected()
+{
+    previous_tournament_index = ui->tournament_comboBox->currentIndex();
 }
 

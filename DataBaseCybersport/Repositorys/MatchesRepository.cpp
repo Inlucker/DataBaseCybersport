@@ -58,7 +58,10 @@ void MatchesRepository::addMatch(MatchBL &match)
 
     string team1_id = to_string(match.getTeam1Id());
     string team2_id = to_string(match.getTeam2Id());
-    string winner_id = to_string(match.getWinnerId());
+    int w_id = match.getWinnerId();
+    string winner_id = to_string(w_id);
+    if (w_id <= 0)
+        winner_id = "NULL";
     string studio_id = to_string(match.getStudioId());
     string commentator_id = to_string(match.getCommentatorId());
     string tournament_id = to_string(match.getTournamentId());

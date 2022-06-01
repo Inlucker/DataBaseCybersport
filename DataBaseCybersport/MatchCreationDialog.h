@@ -29,6 +29,9 @@ public:
 
     void setup(int org_id);
 
+protected:
+    virtual void accept() override;
+
 private slots:
     void on_tournament_comboBox_currentIndexChanged(int index);
 
@@ -50,6 +53,8 @@ private slots:
 
     void on_buttonBox_accepted();
 
+    void on_buttonBox_rejected();
+
 private:
     void updateTeamsList(int tournament_id);
     void updateStudiosList();
@@ -69,6 +74,7 @@ private:
     shared_ptr<MatchesRepository> matches_repository;
 
     vector<int> tournaments_id;
+    int previous_tournament_index = -1;
     int tournament_id = 0;
     int team1_id = 0;
     int team2_id = 0;
