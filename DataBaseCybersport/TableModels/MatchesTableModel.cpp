@@ -18,7 +18,7 @@ int MatchesTableModel::rowCount(const QModelIndex &parent) const
 
 int MatchesTableModel::columnCount(const QModelIndex &parent) const
 {
-    return 7;
+    return 8;
 }
 
 QVariant MatchesTableModel::data(const QModelIndex &index, int role) const
@@ -29,21 +29,21 @@ QVariant MatchesTableModel::data(const QModelIndex &index, int role) const
     {
         switch (col)
         {
-        /*case 0:
-            return QString("%1").arg((*matches)[row].getId());*/
         case 0:
-            return QString::fromStdString((*matches)[row].getTeam1());
+            return QString("%1").arg((*matches)[row].getId());
         case 1:
-            return QString::fromStdString((*matches)[row].getTeam2());
+            return QString::fromStdString((*matches)[row].getTeam1());
         case 2:
-            return QString::fromStdString((*matches)[row].getWinner());
+            return QString::fromStdString((*matches)[row].getTeam2());
         case 3:
-            return QString::fromStdString((*matches)[row].getStudio());
+            return QString::fromStdString((*matches)[row].getWinner());
         case 4:
-            return QString::fromStdString((*matches)[row].getCommentator());
+            return QString::fromStdString((*matches)[row].getStudio());
         case 5:
-            return QString::fromStdString((*matches)[row].getTournament());
+            return QString::fromStdString((*matches)[row].getCommentator());
         case 6:
+            return QString::fromStdString((*matches)[row].getTournament());
+        case 7:
             return QString::fromStdString((*matches)[row].getDate());
         default:
             return QString("Row%1, Column%2")
@@ -61,21 +61,21 @@ QVariant MatchesTableModel::headerData(int section, Qt::Orientation orientation,
     {
         switch (section)
         {
-        /*case 0:
-            return QString("ID");*/
         case 0:
-            return QString("Team1");
+            return QString("ID");
         case 1:
-            return QString("Team2");
+            return QString("Team1");
         case 2:
-            return QString("Winner");
+            return QString("Team2");
         case 3:
-            return QString("Studio");
+            return QString("Winner");
         case 4:
-            return QString("Commentator");
+            return QString("Studio");
         case 5:
-            return QString("Tournament");
+            return QString("Commentator");
         case 6:
+            return QString("Tournament");
+        case 7:
             return QString("Date");
         }
     }

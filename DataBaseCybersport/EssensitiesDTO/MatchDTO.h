@@ -9,10 +9,10 @@ class MatchDTO
 {
 public:
     MatchDTO() = delete;
-    //MatchDTO(int id, string t1, string t2, string w, string s, string c, string t, string d);
-    MatchDTO(string t1, string t2, string w, string s, string c, string t, string d);
+    MatchDTO(int id, string t1, string t2, string w, string s, string c, string t, string d);
+    //MatchDTO(string t1, string t2, string w, string s, string c, string t, string d);
 
-    //int &getId();
+    int &getId();
     string &getTeam1();
     string &getTeam2();
     string &getWinner();
@@ -21,7 +21,7 @@ public:
     string &getTournament();
     string &getDate();
 private:
-    //int id;
+    int id;
     string team1, team2, winner, studio, commentator, tournament, date;
 };
 

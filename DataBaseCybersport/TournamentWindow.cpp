@@ -14,6 +14,7 @@ TournamentWindow::TournamentWindow(QWidget *parent) :
     ui->setupUi(this);
 
     match_creation_dialog = make_unique<MatchCreationDialog>();
+    match_edit_dialog = make_unique<MatchEditDialog>();
 
     tournament_controller = make_unique<TournamentController>();
 
@@ -130,6 +131,32 @@ void TournamentWindow::on_create_match_btn_clicked()
     {
         match_creation_dialog->setup(tournament_controller->getUser()->getId());
         match_creation_dialog->exec();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
+
+void TournamentWindow::on_edit_match_btn_clicked()
+{
+    try
+    {
+        QModelIndexList selectedRows = ui->matches_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() != 1)
+        {
+            QMessageBox::information(this, "Error", "Выберите только один матч");
+            return;
+        }
+        int match_id = ui->matches_tableView->model()->data(selectedRows[0]).toInt();
+
+        match_edit_dialog->setup(match_id);
+        match_edit_dialog->exec();
     }
     catch (BaseError &er)
     {

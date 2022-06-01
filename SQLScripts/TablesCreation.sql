@@ -117,6 +117,7 @@ create table if not exists Tournaments
 --8
 create table if not exists Matches
 (
+	id serial primary key,
 	team1_id int,
 	team2_id int,
 	winner_id int,

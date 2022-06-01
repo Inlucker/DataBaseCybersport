@@ -9,8 +9,9 @@ class MatchBL
 {
 public:
     MatchBL() = delete;
-    MatchBL(int t1, int t2, int w, int s, int c, int t, string d);
+    MatchBL(int id, int t1, int t2, int w, int s, int c, int t, string d);
 
+    int &getId();
     int &getTeam1Id();
     int &getTeam2Id();
     int &getWinnerId();
@@ -19,7 +20,7 @@ public:
     int &getTournamentId();
     string &getDate();
 private:
-    int team1_id, team2_id, winner_id, studio_id, commentator_id, tournament_id;
+    int id, team1_id, team2_id, winner_id, studio_id, commentator_id, tournament_id;
     string date;
 };
 

@@ -83,7 +83,7 @@ order by t.id;
 
 drop view if exists matches_view;
 create or replace VIEW matches_view AS
-SELECT t1.name as team1, t2.name as team2, w.name as winner, s.name as studio, c.nickname as commentator, t.name as tournament, m.date,
+SELECT m.id, t1.name as team1, t2.name as team2, w.name as winner, s.name as studio, c.nickname as commentator, t.name as tournament, m.date,
 		m.team1_id, m.team2_id, m.winner_id, m.studio_id, m.commentator_id, m.tournament_id
 FROM matches m
 	LEFT OUTER JOIN teams t1 on m.team1_id = t1.id
