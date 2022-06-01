@@ -97,35 +97,38 @@ void StudioWindow::on_add_btn_clicked()
 {
     try
     {
-        QModelIndexList selectedRows = ui->free_tableView->selectionModel()->selectedRows();
-        if (selectedRows.size() <= 0)
+        if (ui->free_tableView->model())
         {
-            QMessageBox::information(this, "Error", "Выберите хотябы одного комментатора из списка свободных");
-            return;
-        }
-        for(auto& ind : selectedRows)
-        {
-            int id = ui->free_tableView->model()->data(ind).toInt();
-            shared_ptr<CommentatorBL> com_bl = commentator_repository->getCommentator(id);
-
-            QString new_studio = ui->my_studios_comboBox->currentText();
-            QModelIndex founded_index;
-            int row_count = studios_table_model->rowCount();
-            for (int i = 0; i < row_count; i++)
+            QModelIndexList selectedRows = ui->free_tableView->selectionModel()->selectedRows();
+            if (selectedRows.size() <= 0)
             {
-                QModelIndex idx = studios_table_model->index(i, 3);
-                if (studios_table_model->data(idx).toString() == new_studio)
-                {
-                   founded_index = studios_table_model->index(i, 0);
-                   break;
-                }
+                QMessageBox::information(this, "Error", "Выберите хотябы одного комментатора из списка свободных");
+                return;
             }
-            int new_studio_id = studios_table_model->data(founded_index).toInt();
+            for(auto& ind : selectedRows)
+            {
+                int id = ui->free_tableView->model()->data(ind).toInt();
+                shared_ptr<CommentatorBL> com_bl = commentator_repository->getCommentator(id);
 
-            com_bl->getStudioId() = new_studio_id;
-            commentator_repository->updateCommentator(*com_bl, id);
+                QString new_studio = ui->my_studios_comboBox->currentText();
+                QModelIndex founded_index;
+                int row_count = studios_table_model->rowCount();
+                for (int i = 0; i < row_count; i++)
+                {
+                    QModelIndex idx = studios_table_model->index(i, 3);
+                    if (studios_table_model->data(idx).toString() == new_studio)
+                    {
+                       founded_index = studios_table_model->index(i, 0);
+                       break;
+                    }
+                }
+                int new_studio_id = studios_table_model->data(founded_index).toInt();
+
+                com_bl->getStudioId() = new_studio_id;
+                commentator_repository->updateCommentator(*com_bl, id);
+            }
+            updateLists();
         }
-        updateLists();
     }
     catch (BaseError &er)
     {
@@ -142,21 +145,24 @@ void StudioWindow::on_delete_btn_clicked()
 {
     try
     {
-        QModelIndexList selectedRows = ui->my_tableView->selectionModel()->selectedRows();
-        if (selectedRows.size() <= 0)
+        if (ui->my_tableView->model())
         {
-            QMessageBox::information(this, "Error", "Выберите хотябы одного вашего комментатора из списка");
-            return;
-        }
-        for(auto& ind : selectedRows)
-        {
-            int id = ui->my_tableView->model()->data(ind).toInt();
-            shared_ptr<CommentatorBL> com_bl = commentator_repository->getCommentator(id);
+            QModelIndexList selectedRows = ui->my_tableView->selectionModel()->selectedRows();
+            if (selectedRows.size() <= 0)
+            {
+                QMessageBox::information(this, "Error", "Выберите хотябы одного вашего комментатора из списка");
+                return;
+            }
+            for(auto& ind : selectedRows)
+            {
+                int id = ui->my_tableView->model()->data(ind).toInt();
+                shared_ptr<CommentatorBL> com_bl = commentator_repository->getCommentator(id);
 
-            com_bl->getStudioId() = 0;
-            commentator_repository->updateCommentator(*com_bl, id);
+                com_bl->getStudioId() = 0;
+                commentator_repository->updateCommentator(*com_bl, id);
+            }
+            updateLists();
         }
-        updateLists();
     }
     catch (BaseError &er)
     {

@@ -132,77 +132,93 @@ void MatchCreationDialog::on_commentatros_tableView_clicked(const QModelIndex &i
 
 void MatchCreationDialog::on_choose_team1_btn_clicked()
 {
-    QModelIndexList selectedRows = ui->teams_tableView->selectionModel()->selectedRows();
-    if (selectedRows.size() != 1)
+    if (ui->teams_tableView->model())
     {
-        QMessageBox::information(this, "Error", "Выберите только одну команду");
-        return;
-    }
-    team1_id = ui->teams_tableView->model()->data(selectedRows[0]).toInt();
+        QModelIndexList selectedRows = ui->teams_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() != 1)
+        {
+            QMessageBox::information(this, "Error", "Выберите только одну команду");
+            return;
+        }
+        int new_team1_id = ui->teams_tableView->model()->data(selectedRows[0]).toInt();
 
-    if (team1_id == team2_id)
-    {
-        team1_id = 0;
-        QMessageBox::information(this, "Error", "Эта команда уже выбрана, выберите другую команду");
-        return;
-    }
+        if (new_team1_id == team2_id)
+        {
+            //team1_id = 0;
+            QMessageBox::information(this, "Error", "Эта команда уже выбрана, выберите другую команду");
+            return;
+        }
+        team1_id = new_team1_id;
 
-    QModelIndex name_index = teams_table_model->index(selectedRows[0].row(), 4);
-    ui->team1_label->setText(ui->teams_tableView->model()->data(name_index).toString());
+        QModelIndex name_index = teams_table_model->index(selectedRows[0].row(), 4);
+        ui->team1_label->setText(ui->teams_tableView->model()->data(name_index).toString());
+    }
 }
 
 
 void MatchCreationDialog::on_choose_team2_btn_clicked()
 {
-    QModelIndexList selectedRows = ui->teams_tableView->selectionModel()->selectedRows();
-    if (selectedRows.size() != 1)
+    if (ui->teams_tableView->model())
     {
-        QMessageBox::information(this, "Error", "Выберите только одну команду");
-        return;
-    }
-    team2_id = ui->teams_tableView->model()->data(selectedRows[0]).toInt();
+        QModelIndexList selectedRows = ui->teams_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() != 1)
+        {
+            QMessageBox::information(this, "Error", "Выберите только одну команду");
+            return;
+        }
+        int new_team2_id = ui->teams_tableView->model()->data(selectedRows[0]).toInt();
 
-    if (team1_id == team2_id)
-    {
-        team2_id = 0;
-        QMessageBox::information(this, "Error", "Эта команда уже выбрана, выберите другую команду");
-        return;
-    }
+        if (team1_id == new_team2_id)
+        {
+            //team2_id = 0;
+            QMessageBox::information(this, "Error", "Эта команда уже выбрана, выберите другую команду");
+            return;
+        }
+        team2_id = new_team2_id;
 
-    QModelIndex name_index = teams_table_model->index(selectedRows[0].row(), 4);
-    ui->team2_label->setText(ui->teams_tableView->model()->data(name_index).toString());
+        QModelIndex name_index = teams_table_model->index(selectedRows[0].row(), 4);
+        ui->team2_label->setText(ui->teams_tableView->model()->data(name_index).toString());
+    }
 }
 
 
 void MatchCreationDialog::on_choose_studio_btn_clicked()
 {
-    QModelIndexList selectedRows = ui->studios_tableView->selectionModel()->selectedRows();
-    if (selectedRows.size() != 1)
+    if (ui->studios_tableView->model())
     {
-        QMessageBox::information(this, "Error", "Выберите только одну студию");
-        return;
+        QModelIndexList selectedRows = ui->studios_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() != 1)
+        {
+            QMessageBox::information(this, "Error", "Выберите только одну студию");
+            return;
+        }
+        studio_id = ui->studios_tableView->model()->data(selectedRows[0]).toInt();
+
+        QModelIndex name_index = studios_table_model->index(selectedRows[0].row(), 3);
+        ui->studio_label->setText(ui->studios_tableView->model()->data(name_index).toString());
+
+        commentator_id = 0;
+        ui->commentator_label->setText("Commentator");
+        updateCommentatorsList();
     }
-    studio_id = ui->studios_tableView->model()->data(selectedRows[0]).toInt();
-
-    QModelIndex name_index = studios_table_model->index(selectedRows[0].row(), 3);
-    ui->studio_label->setText(ui->studios_tableView->model()->data(name_index).toString());
-
-    updateCommentatorsList();
 }
 
 
 void MatchCreationDialog::on_choose_commentator_btn_clicked()
 {
-    QModelIndexList selectedRows = ui->commentatros_tableView->selectionModel()->selectedRows();
-    if (selectedRows.size() != 1)
+    if (ui->commentatros_tableView->model())
     {
-        QMessageBox::information(this, "Error", "Выберите только одного комментатора");
-        return;
-    }
-    commentator_id = ui->commentatros_tableView->model()->data(selectedRows[0]).toInt();
+        QModelIndexList selectedRows = ui->commentatros_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() != 1)
+        {
+            QMessageBox::information(this, "Error", "Выберите только одного комментатора");
+            return;
+        }
+        commentator_id = ui->commentatros_tableView->model()->data(selectedRows[0]).toInt();
 
-    QModelIndex name_index = commentators_table_model->index(selectedRows[0].row(), 3);
-    ui->commentator_label->setText(ui->commentatros_tableView->model()->data(name_index).toString());
+        QModelIndex name_index = commentators_table_model->index(selectedRows[0].row(), 3);
+        ui->commentator_label->setText(ui->commentatros_tableView->model()->data(name_index).toString());
+    }
 }
 
 

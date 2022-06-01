@@ -109,35 +109,38 @@ void TeamWindow::on_add_btn_clicked()
 {
     try
     {
-        QModelIndexList selectedRows = ui->free_tableView->selectionModel()->selectedRows();
-        if (selectedRows.size() <= 0)
+        if (ui->free_tableView->model())
         {
-            QMessageBox::information(this, "Error", "Выберите хотябы одного игрока из списка свободных");
-            return;
-        }
-        for(auto& ind : selectedRows)
-        {
-            int id = ui->free_tableView->model()->data(ind).toInt();
-            shared_ptr<PlayerBL> player_bl = players_repository->getPlayer(id);
-
-            QString new_team = ui->my_teams_comboBox->currentText();
-            QModelIndex founded_index;
-            int row_count = teams_table_model->rowCount();
-            for (int i = 0; i < row_count; i++)
+            QModelIndexList selectedRows = ui->free_tableView->selectionModel()->selectedRows();
+            if (selectedRows.size() <= 0)
             {
-                QModelIndex idx = teams_table_model->index(i, 4);
-                if (teams_table_model->data(idx).toString() == new_team)
-                {
-                   founded_index = teams_table_model->index(i, 0);
-                   break;
-                }
+                QMessageBox::information(this, "Error", "Выберите хотябы одного игрока из списка свободных");
+                return;
             }
-            int new_team_id = teams_table_model->data(founded_index).toInt();
+            for(auto& ind : selectedRows)
+            {
+                int id = ui->free_tableView->model()->data(ind).toInt();
+                shared_ptr<PlayerBL> player_bl = players_repository->getPlayer(id);
 
-            player_bl->getTeamId() = new_team_id;
-            players_repository->updatePlayer(*player_bl, id);
+                QString new_team = ui->my_teams_comboBox->currentText();
+                QModelIndex founded_index;
+                int row_count = teams_table_model->rowCount();
+                for (int i = 0; i < row_count; i++)
+                {
+                    QModelIndex idx = teams_table_model->index(i, 4);
+                    if (teams_table_model->data(idx).toString() == new_team)
+                    {
+                       founded_index = teams_table_model->index(i, 0);
+                       break;
+                    }
+                }
+                int new_team_id = teams_table_model->data(founded_index).toInt();
+
+                player_bl->getTeamId() = new_team_id;
+                players_repository->updatePlayer(*player_bl, id);
+            }
+            updateLists();
         }
-        updateLists();
     }
     catch (BaseError &er)
     {
@@ -154,21 +157,24 @@ void TeamWindow::on_delete_btn_clicked()
 {
     try
     {
-        QModelIndexList selectedRows = ui->my_tableView->selectionModel()->selectedRows();
-        if (selectedRows.size() <= 0)
+        if (ui->my_tableView->model())
         {
-            QMessageBox::information(this, "Error", "Выберите хотябы одного вашего игрока из списка");
-            return;
-        }
-        for(auto& ind : selectedRows)
-        {
-            int id = ui->my_tableView->model()->data(ind).toInt();
-            shared_ptr<PlayerBL> player_bl = players_repository->getPlayer(id);
+            QModelIndexList selectedRows = ui->my_tableView->selectionModel()->selectedRows();
+            if (selectedRows.size() <= 0)
+            {
+                QMessageBox::information(this, "Error", "Выберите хотябы одного вашего игрока из списка");
+                return;
+            }
+            for(auto& ind : selectedRows)
+            {
+                int id = ui->my_tableView->model()->data(ind).toInt();
+                shared_ptr<PlayerBL> player_bl = players_repository->getPlayer(id);
 
-            player_bl->getTeamId() = 0;
-            players_repository->updatePlayer(*player_bl, id);
+                player_bl->getTeamId() = 0;
+                players_repository->updatePlayer(*player_bl, id);
+            }
+            updateLists();
         }
-        updateLists();
     }
     catch (BaseError &er)
     {

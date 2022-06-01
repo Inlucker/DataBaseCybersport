@@ -201,4 +201,15 @@ public:
     }
 };
 
+class UpdateMatchError : public BaseError
+{
+public:
+    UpdateMatchError(string info, string filename, int line, const char *time, string error = "Update match error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
 #endif // REPOSITORYERRORS_H

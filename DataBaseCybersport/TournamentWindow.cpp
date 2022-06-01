@@ -63,30 +63,33 @@ void TournamentWindow::updateTournamentsList()
 
 void TournamentWindow::updateMatchesTeamsLists()
 {
-    QModelIndexList selectedRows = ui->tournaments_tableView->selectionModel()->selectedRows();
-    if (selectedRows.size() != 1)
+    if (ui->tournaments_tableView->model())
     {
-        QMessageBox::information(this, "Error", "Выберите только один турнир");
-        return;
+        QModelIndexList selectedRows = ui->tournaments_tableView->selectionModel()->selectedRows();
+        if (selectedRows.size() != 1)
+        {
+            QMessageBox::information(this, "Error", "Выберите только один турнир");
+            return;
+        }
+        int tournament_id = ui->tournaments_tableView->model()->data(selectedRows[0]).toInt();
+
+        shared_ptr<vector<MatchDTO>> matches_dto = matches_repository->getMatchesDTOByTournament(tournament_id);
+        matches_table_model = make_shared<MatchesTableModel>(matches_dto);
+
+        ui->matches_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->matches_tableView->setModel(matches_table_model.get());
+        for (int i = 0; i < matches_table_model->columnCount(); i++)
+            ui->matches_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+
+
+        shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByTournament(tournament_id);
+        teams_table_model = make_shared<TeamsTableModel>(teams_dto);
+
+        ui->teams_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->teams_tableView->setModel(teams_table_model.get());
+        for (int i = 0; i < teams_table_model->columnCount(); i++)
+            ui->teams_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
     }
-    int tournament_id = ui->tournaments_tableView->model()->data(selectedRows[0]).toInt();
-
-    shared_ptr<vector<MatchDTO>> matches_dto = matches_repository->getMatchesDTOByTournament(tournament_id);
-    matches_table_model = make_shared<MatchesTableModel>(matches_dto);
-
-    ui->matches_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->matches_tableView->setModel(matches_table_model.get());
-    for (int i = 0; i < matches_table_model->columnCount(); i++)
-        ui->matches_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-
-
-    shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByTournament(tournament_id);
-    teams_table_model = make_shared<TeamsTableModel>(teams_dto);
-
-    ui->teams_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->teams_tableView->setModel(teams_table_model.get());
-    for (int i = 0; i < teams_table_model->columnCount(); i++)
-        ui->teams_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
 
@@ -147,16 +150,20 @@ void TournamentWindow::on_edit_match_btn_clicked()
 {
     try
     {
-        QModelIndexList selectedRows = ui->matches_tableView->selectionModel()->selectedRows();
-        if (selectedRows.size() != 1)
+        if (ui->matches_tableView->model())
         {
-            QMessageBox::information(this, "Error", "Выберите только один матч");
-            return;
-        }
-        int match_id = ui->matches_tableView->model()->data(selectedRows[0]).toInt();
+            QModelIndexList selectedRows = ui->matches_tableView->selectionModel()->selectedRows();
+            if (selectedRows.size() != 1)
+            {
+                QMessageBox::information(this, "Error", "Выберите только один матч");
+                return;
+            }
+            int match_id = ui->matches_tableView->model()->data(selectedRows[0]).toInt();
 
-        match_edit_dialog->setup(match_id);
-        match_edit_dialog->exec();
+            match_edit_dialog->setup(match_id);
+            match_edit_dialog->exec();
+            updateMatchesTeamsLists();
+        }
     }
     catch (BaseError &er)
     {

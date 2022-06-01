@@ -18,6 +18,7 @@ public:
     shared_ptr<vector<MatchDTO>> getMatchesDTOByTournament(int tournament_id);
     shared_ptr<MatchBL> getMatch(int match_id);
     void addMatch(MatchBL& match);
+    void updateMatch(MatchBL& match, int match_id);
 
 protected:
     void connect();

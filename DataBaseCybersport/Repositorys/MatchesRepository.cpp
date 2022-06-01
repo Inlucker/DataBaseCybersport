@@ -139,6 +139,53 @@ void MatchesRepository::addMatch(MatchBL &match)
     }
 }
 
+void MatchesRepository::updateMatch(MatchBL &match, int match_id)
+{
+    connect();
+    string team1_id = to_string(match.getTeam1Id());
+    string team2_id = to_string(match.getTeam2Id());
+    int w_id = match.getWinnerId();
+    string winner_id = to_string(w_id);
+    if (w_id <= 0)
+        winner_id = "NULL";
+    string studio_id = to_string(match.getStudioId());
+    string commentator_id = to_string(match.getCommentatorId());
+    string tournament_id = to_string(match.getTournamentId());
+    string date = "'" + match.getDate() + "'";
+
+    string query = "update Matches set team1_id = " + team1_id;
+    query += ", team2_id = " + team2_id;
+    query += ", winner_id = " + winner_id;
+    query += ", studio_id = " + studio_id;
+    query += ", commentator_id = " + commentator_id;
+    query += ", tournament_id = " + tournament_id;
+    query += ", date = " + date;
+    query += " where id = " + to_string(match_id) + ";";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    int flag = 0;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        if (PQcmdTuples(res)[0] == '0')
+            flag = 1;
+        if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = 2;
+        }
+
+        PQclear( res );
+    }
+
+    time_t t_time = time(NULL);
+    if (flag == 1)
+        throw UpdateMatchError("No such Match", __FILE__, __LINE__, ctime(&t_time));
+    else if (flag == 2)
+        throw UpdateMatchError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+}
+
 void MatchesRepository::connect()
 {
     string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();
