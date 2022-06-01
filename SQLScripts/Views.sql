@@ -95,3 +95,16 @@ FROM matches m
 order by m.date;
 
 --select * from matches_view;
+
+drop view if exists tournament_teams_view;
+create or replace VIEW tournament_teams_view AS
+SELECT t.id, c.name as country, s.name as sponsor, u.login as captain, t.name, ta.avg as avg_rating, t.country_id, t.sponsor_id, t.captain_id, tt.tournament_id
+FROM tournamentteams tt
+	LEFT OUTER JOIN teams t on tt.team_id = t.id
+	LEFT OUTER JOIN countries c  on c.id = t.country_id
+	LEFT OUTER JOIN sponsors s   on s.id = t.sponsor_id
+	LEFT OUTER JOIN users u      on u.id = t.captain_id
+	LEFT OUTER JOIN teams_avg ta on ta.id = t.id
+order by tt.tournament_id;
+	
+--select * from tournament_teams_view;

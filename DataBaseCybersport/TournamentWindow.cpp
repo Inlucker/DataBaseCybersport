@@ -18,9 +18,11 @@ TournamentWindow::TournamentWindow(QWidget *parent) :
     users_repository = make_shared<UsersRepository>();
     tournaments_repository = make_shared<TournamentsRepository>();
     matches_repository = make_shared<MatchesRepository>();
+    teams_repository = make_shared<TeamsRepository>();
 
     tournaments_table_model = make_shared<TournamentsTableModel>();
     matches_table_model = make_shared<MatchesTableModel>();
+    teams_table_model = make_shared<TeamsTableModel>();
 }
 
 TournamentWindow::~TournamentWindow()
@@ -56,7 +58,7 @@ void TournamentWindow::updateTournamentsList()
         ui->tournaments_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
-void TournamentWindow::updateMatchesList()
+void TournamentWindow::updateMatchesTeamsLists()
 {
     QModelIndexList selectedRows = ui->tournaments_tableView->selectionModel()->selectedRows();
     if (selectedRows.size() != 1)
@@ -73,6 +75,15 @@ void TournamentWindow::updateMatchesList()
     ui->matches_tableView->setModel(matches_table_model.get());
     for (int i = 0; i < matches_table_model->columnCount(); i++)
         ui->matches_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+
+
+    shared_ptr<vector<TeamDTO>> teams_dto = teams_repository->getTeamsByTournament(tournament_id);
+    teams_table_model = make_shared<TeamsTableModel>(teams_dto);
+
+    ui->teams_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->teams_tableView->setModel(teams_table_model.get());
+    for (int i = 0; i < teams_table_model->columnCount(); i++)
+        ui->teams_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
 
@@ -80,7 +91,7 @@ void TournamentWindow::on_get_mathces_btn_clicked()
 {
     try
     {
-        updateMatchesList();
+        updateMatchesTeamsLists();
     }
     catch (BaseError &er)
     {
@@ -102,5 +113,11 @@ void TournamentWindow::on_tournaments_tableView_clicked(const QModelIndex &index
 void TournamentWindow::on_matches_tableView_clicked(const QModelIndex &index)
 {
     ui->matches_tableView->selectRow(index.row());
+}
+
+
+void TournamentWindow::on_teams_tableView_clicked(const QModelIndex &index)
+{
+    ui->teams_tableView->selectRow(index.row());
 }
 

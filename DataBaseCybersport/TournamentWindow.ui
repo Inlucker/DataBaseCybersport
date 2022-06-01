@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="delete_this_user_btn">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>270</y>
+     <x>380</x>
+     <y>610</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -34,8 +34,8 @@
   <widget class="QPushButton" name="exit_btn">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>210</y>
+     <x>380</x>
+     <y>550</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -54,7 +54,7 @@
     <rect>
      <x>10</x>
      <y>0</y>
-     <width>501</width>
+     <width>571</width>
      <height>321</height>
     </rect>
    </property>
@@ -66,7 +66,7 @@
      <rect>
       <x>0</x>
       <y>20</y>
-      <width>501</width>
+      <width>571</width>
       <height>301</height>
      </rect>
     </property>
@@ -75,9 +75,9 @@
   <widget class="QGroupBox" name="groupBox_2">
    <property name="geometry">
     <rect>
-     <x>730</x>
+     <x>590</x>
      <y>0</y>
-     <width>571</width>
+     <width>711</width>
      <height>321</height>
     </rect>
    </property>
@@ -89,7 +89,7 @@
      <rect>
       <x>0</x>
       <y>20</y>
-      <width>571</width>
+      <width>711</width>
       <height>301</height>
      </rect>
     </property>
@@ -98,8 +98,8 @@
   <widget class="QPushButton" name="get_mathces_btn">
    <property name="geometry">
     <rect>
-     <x>520</x>
-     <y>150</y>
+     <x>380</x>
+     <y>490</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -112,6 +112,29 @@
    <property name="text">
     <string>Get Tournament Matches</string>
    </property>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_3">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>320</y>
+     <width>701</width>
+     <height>341</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Tournament participating Teams</string>
+   </property>
+   <widget class="QTableView" name="teams_tableView">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>701</width>
+      <height>321</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

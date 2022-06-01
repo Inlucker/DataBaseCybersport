@@ -87,6 +87,49 @@ shared_ptr<vector<TeamDTO> > TeamsRepository::getTeamsByCaptainId(int captain_id
     return vec;
 }
 
+shared_ptr<vector<TeamDTO> > TeamsRepository::getTeamsByTournament(int tournament_id)
+{
+    connect();
+    string query = "select * FROM tournament_teams_view where tournament_id =" + to_string(tournament_id) + ";";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    shared_ptr<vector<TeamDTO>> vec = make_shared<vector<TeamDTO>>();
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        int rows_n = PQntuples(res);
+        if (PQresultStatus(res) == PGRES_TUPLES_OK && rows_n)
+        {
+            for (int i = 0; i < rows_n; i++)
+            {
+                int ID = atoi(PQgetvalue (res, i, 0));
+                string country = PQgetvalue (res, i, 1);
+                string sponsor = PQgetvalue (res, i, 2);
+                string captain = PQgetvalue (res, i, 3);
+                string name = PQgetvalue (res, i, 4);
+                int avg_rating = atoi(PQgetvalue (res, i, 5));
+
+                vec->push_back(TeamDTO(ID, country, sponsor, captain, name, avg_rating));
+            }
+        }
+        else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    time_t t_time = time(NULL);
+    if (flag)
+        throw GetTeamError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+
+    return vec;
+}
+
 void TeamsRepository::addTeam(TeamBL &team_bl)
 {
     //no need
