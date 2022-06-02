@@ -44,10 +44,12 @@ void TournamentCreationDialog::accept()
 {
     string tournament_name = ui->lineEdit->text().toStdString();
     int prizepool = ui->spinBox->value();
+    shared_ptr<vector<int>> teams_id = my_teams_table_model->getTeamsId();
     if (tournament_name.size() > 0 && prizepool > 0 && country_id)
     {
         TournamentBL tournament_bl(0, country_id, organizer_id, tournament_name, prizepool);
-        tournaments_repository->addTournament(tournament_bl);
+        tournament_id = tournaments_repository->addTournament(tournament_bl);
+        tournaments_repository->addTournamentTeams(tournament_id, teams_id);
         QDialog::accept();
     }
     else

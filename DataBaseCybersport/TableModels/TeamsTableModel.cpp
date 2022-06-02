@@ -93,6 +93,16 @@ QVariant TeamsTableModel::headerData(int section, Qt::Orientation orientation, i
     return QVariant();
 }
 
+shared_ptr<vector<int> > TeamsTableModel::getTeamsId()
+{
+    shared_ptr<vector<int>> res = make_shared<vector<int>>();
+    for (auto &team : *teams)
+    {
+        res->push_back(team.getId());
+    }
+    return res;
+}
+
 TeamDTO TeamsTableModel::deleteRow(int row)
 {
     beginResetModel();

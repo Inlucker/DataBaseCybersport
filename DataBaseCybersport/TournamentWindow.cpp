@@ -135,6 +135,7 @@ void TournamentWindow::on_create_match_btn_clicked()
     {
         match_creation_dialog->setup(tournament_controller->getUser()->getId());
         match_creation_dialog->exec();
+        updateMatchesTeamsLists();
     }
     catch (BaseError &er)
     {
@@ -183,6 +184,7 @@ void TournamentWindow::on_create_tournament_btn_clicked()
     {
         tournament_creation_dialog->setup(tournament_controller->getUser()->getId());
         tournament_creation_dialog->exec();
+        updateTournamentsList();
     }
     catch (BaseError &er)
     {

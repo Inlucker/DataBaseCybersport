@@ -49,7 +49,7 @@ shared_ptr<vector<TournamentDTO> > TournamentsRepository::getTournamentsDTOByOrg
     return vec;
 }
 
-void TournamentsRepository::addTournament(TournamentBL &tournament_bl)
+int TournamentsRepository::addTournament(TournamentBL &tournament_bl)
 {
     connect();
     //int ID = player_bl.getId();
@@ -62,7 +62,47 @@ void TournamentsRepository::addTournament(TournamentBL &tournament_bl)
     query += country_id + ", ";
     query += organizer_id + ", ";
     query += name + ", ";
-    query += prize_pool + ");";
+    query += prize_pool + ") RETURNING id;";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        if (PQresultStatus(res) == PGRES_TUPLES_OK && PQntuples(res))
+        {
+            int ID = atoi(PQgetvalue(res, 0, 0));
+            return ID;
+        }
+        else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    time_t t_time = time(NULL);
+    if (flag)
+        throw InsertTournamentError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+    else
+        throw InsertTournamentError("Unexpected addTournament error", __FILE__, __LINE__, ctime(&t_time));
+
+}
+
+void TournamentsRepository::addTournamentTeams(int tournament_id, shared_ptr<vector<int> > teams_id)
+{
+    connect();
+    string query = "";
+    string ID = to_string(tournament_id);
+    for (auto &id : *teams_id)
+    {
+        query += "insert into TournamentTeams values (";
+        query += ID + ", ";
+        query += to_string(id) + ");\n";
+    }
     PQsendQuery(m_connection.get(), query.c_str());
 
     bool flag = false;

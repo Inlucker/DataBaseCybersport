@@ -16,7 +16,8 @@ public:
     TournamentsRepository();
 
     shared_ptr<vector<TournamentDTO>> getTournamentsDTOByOrgId(int org_id);
-    void addTournament(TournamentBL &tournament_nl);
+    int addTournament(TournamentBL &tournament_bl);
+    void addTournamentTeams(int tournament_id, shared_ptr<vector<int>> teams_id);
 
 protected:
     void connect();
