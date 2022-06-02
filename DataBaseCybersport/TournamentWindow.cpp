@@ -15,6 +15,7 @@ TournamentWindow::TournamentWindow(QWidget *parent) :
 
     match_creation_dialog = make_unique<MatchCreationDialog>();
     match_edit_dialog = make_unique<MatchEditDialog>();
+    tournament_creation_dialog = make_unique<TournamentCreationDialog>();
 
     tournament_controller = make_unique<TournamentController>();
 
@@ -164,6 +165,24 @@ void TournamentWindow::on_edit_match_btn_clicked()
             match_edit_dialog->exec();
             updateMatchesTeamsLists();
         }
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
+
+void TournamentWindow::on_create_tournament_btn_clicked()
+{
+    try
+    {
+        tournament_creation_dialog->setup(tournament_controller->getUser()->getId());
+        tournament_creation_dialog->exec();
     }
     catch (BaseError &er)
     {

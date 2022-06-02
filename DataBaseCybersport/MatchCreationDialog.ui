@@ -45,6 +45,11 @@
      <height>61</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="title">
     <string>Tournament selection</string>
    </property>
@@ -277,6 +282,11 @@
      <width>391</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>

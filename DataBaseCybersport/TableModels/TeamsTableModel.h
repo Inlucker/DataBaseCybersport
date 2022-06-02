@@ -14,6 +14,10 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
 
+    //shared_ptr<vector<TeamDTO> > getTeams();
+    TeamDTO deleteRow(int row);
+    void addTeam(TeamDTO &team);
+
 private:
     int rows_number = 0;
     shared_ptr<vector<TeamDTO> > teams;

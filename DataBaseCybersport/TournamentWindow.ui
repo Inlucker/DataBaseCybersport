@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1307</width>
-    <height>727</height>
+    <height>678</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -99,7 +99,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>340</y>
+     <y>330</y>
      <width>201</width>
      <height>51</height>
     </rect>
@@ -170,6 +170,24 @@
    </property>
    <property name="text">
     <string>Edit Match </string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="create_tournament_btn">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>390</y>
+     <width>201</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Create Tournament</string>
    </property>
   </widget>
  </widget>

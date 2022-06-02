@@ -51,6 +51,7 @@ SOURCES += \
     TableModels/TeamsTableModel.cpp \
     TableModels/TournamentsTableModel.cpp \
     TeamWindow.cpp \
+    TournamentCreationDialog.cpp \
     TournamentWindow.cpp \
     main.cpp \
     BaseWindow.cpp
@@ -101,6 +102,7 @@ HEADERS += \
     TableModels/TeamsTableModel.h \
     TableModels/TournamentsTableModel.h \
     TeamWindow.h \
+    TournamentCreationDialog.h \
     TournamentWindow.h
 
 FORMS += \
@@ -109,6 +111,7 @@ FORMS += \
     MatchEditDialog.ui \
     StudioWindow.ui \
     TeamWindow.ui \
+    TournamentCreationDialog.ui \
     TournamentWindow.ui
 
 # Default rules for deployment.

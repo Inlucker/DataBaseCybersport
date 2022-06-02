@@ -92,3 +92,21 @@ QVariant TeamsTableModel::headerData(int section, Qt::Orientation orientation, i
     }*/
     return QVariant();
 }
+
+TeamDTO TeamsTableModel::deleteRow(int row)
+{
+    beginResetModel();
+    TeamDTO res = teams->at(row);
+    teams->erase(teams->begin() + row);
+    rows_number = teams->size();
+    endResetModel();
+    return res;
+}
+
+void TeamsTableModel::addTeam(TeamDTO &team)
+{
+    beginResetModel();
+    teams->push_back(team);
+    rows_number = teams->size();
+    endResetModel();
+}

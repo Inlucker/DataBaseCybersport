@@ -5,6 +5,7 @@
 
 #include "MatchCreationDialog.h"
 #include "MatchEditDialog.h"
+#include "TournamentCreationDialog.h"
 #include "Controllers/TournamentController.h"
 #include "Repositorys/UsersRepository.h"
 #include "Repositorys/TournamentsRepository.h"
@@ -46,6 +47,8 @@ private slots:
 
     void on_edit_match_btn_clicked();
 
+    void on_create_tournament_btn_clicked();
+
 private:
     void updateTournamentsList();
     void updateMatchesTeamsLists();
@@ -55,6 +58,7 @@ private:
 
     unique_ptr<MatchCreationDialog> match_creation_dialog;
     unique_ptr<MatchEditDialog> match_edit_dialog;
+    unique_ptr<TournamentCreationDialog> tournament_creation_dialog;
 
     unique_ptr<TournamentController> tournament_controller;
 
