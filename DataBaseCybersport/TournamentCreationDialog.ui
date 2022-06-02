@@ -178,6 +178,21 @@
     <string>Delete team</string>
    </property>
   </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>590</y>
+     <width>181</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>

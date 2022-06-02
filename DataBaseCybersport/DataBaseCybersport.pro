@@ -16,6 +16,7 @@ SOURCES += \
     EssensitiesBL/CommentatorBL.cpp \
     EssensitiesBL/MatchBL.cpp \
     EssensitiesBL/PlayerBL.cpp \
+    EssensitiesBL/TournamentBL.cpp \
     EssensitiesDTO/CommentatorDTO.cpp \
     EssensitiesDTO/MatchDTO.cpp \
     EssensitiesDTO/PlayerDTO.cpp \
@@ -67,6 +68,7 @@ HEADERS += \
     EssensitiesBL/CommentatorBL.h \
     EssensitiesBL/MatchBL.h \
     EssensitiesBL/PlayerBL.h \
+    EssensitiesBL/TournamentBL.h \
     EssensitiesDTO/CommentatorDTO.h \
     EssensitiesDTO/MatchDTO.h \
     EssensitiesDTO/PlayerDTO.h \

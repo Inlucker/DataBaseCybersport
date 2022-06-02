@@ -49,6 +49,43 @@ shared_ptr<vector<TournamentDTO> > TournamentsRepository::getTournamentsDTOByOrg
     return vec;
 }
 
+void TournamentsRepository::addTournament(TournamentBL &tournament_bl)
+{
+    connect();
+    //int ID = player_bl.getId();
+    string country_id = to_string(tournament_bl.getCountryId());
+    string organizer_id = to_string(tournament_bl.getOrganizerId());
+    string name = "'" + tournament_bl.getName() + "'";
+    string prize_pool = to_string(tournament_bl.getPrizePool());
+
+    string query = "insert into Tournaments(country_id, organizer_id, name, prizepool) values(";
+    query += country_id + ", ";
+    query += organizer_id + ", ";
+    query += name + ", ";
+    query += prize_pool + ");";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    if (flag)
+    {
+        time_t t_time = time(NULL);
+        throw InsertTournamentError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+    }
+}
+
 void TournamentsRepository::connect()
 {
     string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();

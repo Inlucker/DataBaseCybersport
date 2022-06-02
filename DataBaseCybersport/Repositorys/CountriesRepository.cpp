@@ -40,6 +40,44 @@ string CountriesRepository::getCountry(int id)
         throw GetCountryError("Unexpected getCountry error", __FILE__, __LINE__, ctime(&t_time));
 }
 
+shared_ptr<vector<string> > CountriesRepository::getAllCountries()
+{
+    connect();
+    string query = "select name FROM countries;";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    shared_ptr<vector<string>> vec = make_shared<vector<string>>();
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        int rows_n = PQntuples(res);
+        if (PQresultStatus(res) == PGRES_TUPLES_OK && rows_n)
+        {
+            for (int i = 0; i < rows_n; i++)
+            {
+                string country_name = PQgetvalue (res, i, 0);
+
+                vec->push_back(country_name);
+            }
+        }
+        else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    time_t t_time = time(NULL);
+    if (flag)
+        throw GetCountryError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+
+    return vec;
+}
+
 void CountriesRepository::connect()
 {
     string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();

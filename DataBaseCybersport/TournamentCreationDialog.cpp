@@ -13,6 +13,7 @@ TournamentCreationDialog::TournamentCreationDialog(QWidget *parent) :
 
     tournaments_repository = make_shared<TournamentsRepository>();
     teams_repository = make_shared<TeamsRepository>();
+    countries_repository = make_shared<CountriesRepository>();
 
     teams_table_model = make_shared<TeamsTableModel>();
     my_teams_table_model = make_shared<TeamsTableModel>();
@@ -36,6 +37,25 @@ void TournamentCreationDialog::setup(int org_id)
     organizer_id = org_id;
     updateTeamsList();
     updateMyTeamsList();
+    updateCountriesList();
+}
+
+void TournamentCreationDialog::accept()
+{
+    string tournament_name = ui->lineEdit->text().toStdString();
+    int prizepool = ui->spinBox->value();
+    if (tournament_name.size() > 0 && prizepool > 0 && country_id)
+    {
+        TournamentBL tournament_bl(0, country_id, organizer_id, tournament_name, prizepool);
+        tournaments_repository->addTournament(tournament_bl);
+        QDialog::accept();
+    }
+    else
+    {
+        // Если некорректные данные
+        QMessageBox::information(this, "Error", "Выберите все параметры");
+        return;
+    }
 }
 
 void TournamentCreationDialog::updateTeamsList()
@@ -52,6 +72,16 @@ void TournamentCreationDialog::updateMyTeamsList()
 {
     my_teams_table_model = make_shared<TeamsTableModel>();
     ui->my_teams_tableView->setModel(my_teams_table_model.get());
+}
+
+void TournamentCreationDialog::updateCountriesList()
+{
+    shared_ptr<vector<string>> countries = countries_repository->getAllCountries();
+    ui->comboBox->clear();
+    for (auto &country : *countries)
+    {
+        ui->comboBox->addItem(QString::fromStdString(country));
+    }
 }
 
 
@@ -138,5 +168,11 @@ void TournamentCreationDialog::on_delete_team_btn_clicked()
 void TournamentCreationDialog::on_my_teams_tableView_clicked(const QModelIndex &index)
 {
     ui->my_teams_tableView->selectRow(index.row());
+}
+
+
+void TournamentCreationDialog::on_comboBox_currentIndexChanged(int index)
+{
+    country_id = index + 1;
 }
 

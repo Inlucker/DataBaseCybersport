@@ -5,6 +5,7 @@
 
 #include "Repositorys/TournamentsRepository.h"
 #include "Repositorys/TeamsRepository.h"
+#include "Repositorys/CountriesRepository.h"
 #include "TableModels/TeamsTableModel.h"
 
 namespace Ui {
@@ -21,6 +22,9 @@ public:
 
     void setup(int org_id);
 
+protected:
+    virtual void accept() override;
+
 private slots:
     void on_pushButton_clicked();
 
@@ -30,9 +34,12 @@ private slots:
 
     void on_my_teams_tableView_clicked(const QModelIndex &index);
 
+    void on_comboBox_currentIndexChanged(int index);
+
 private:
     void updateTeamsList();
     void updateMyTeamsList();
+    void updateCountriesList();
 
 private:
     Ui::TournamentCreationDialog *ui;
@@ -42,10 +49,11 @@ private:
     int organizer_id = 0;
     //string tournament_name = "";
     //int prizepool = 0;
-    vector<int> teams;
+    //vector<int> teams;
 
     shared_ptr<TournamentsRepository> tournaments_repository;
     shared_ptr<TeamsRepository> teams_repository;
+    shared_ptr<CountriesRepository> countries_repository;
 
     shared_ptr<TeamsTableModel> teams_table_model;
     shared_ptr<TeamsTableModel> my_teams_table_model;

@@ -3,6 +3,9 @@
 
 #include <libpq-fe.h>
 #include <memory>
+#include <vector>
+
+using namespace std;
 
 #include "Repositorys/ICountriesRepository.h"
 
@@ -13,6 +16,7 @@ public:
     virtual ~CountriesRepository() = default;
 
     virtual string getCountry(int id) override;
+    shared_ptr<vector<string>> getAllCountries();
 
 protected:
     void connect();
