@@ -49,9 +49,12 @@ private slots:
 
     void on_create_tournament_btn_clicked();
 
+    void on_delete_this_user_btn_clicked();
+
 private:
     void updateTournamentsList();
     void updateMatchesTeamsLists();
+    void resetMatchesTeamsLists();
 
 private:
     Ui::TournamentWindow *ui;

@@ -65,3 +65,31 @@ when (OLD.role_id = 3)
 execute procedure whenDeleteStudioOwner();
 
 --DROP trigger tr_whenDeleteStudioOwner on Users
+
+
+/* Тригер для удаления tournament_organizer */
+-- Создаём функцию для триггера...
+create or replace function whenDeleteTournamentOrganizer()
+returns trigger 
+as $$
+BEGIN
+	--RAISE notice 'old = %', (old.id);
+	UPDATE tournaments  
+	SET organizer_id = NULL
+	WHERE organizer_id = old.id;
+
+	return OLD;
+end
+$$ language plpgsql;
+
+--drop function whenDeleteTournamentOrganizer();
+
+--Теперь триггер
+create or replace trigger tr_whenDeleteTournamentOrganizer
+before delete
+on Users
+for each row
+when (OLD.role_id = 2)
+execute procedure whenDeleteTournamentOrganizer();
+
+--DROP trigger tr_whenDeleteTournamentOrganizer on Users

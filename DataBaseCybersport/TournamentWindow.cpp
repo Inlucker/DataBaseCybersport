@@ -41,6 +41,7 @@ void TournamentWindow::login(shared_ptr<UserBL> user_bl, string role)
     Settings::set(Settings::DBUser, Settings::DataBase) = r;
     Settings::set(Settings::DBPass, Settings::DataBase) = r;
     updateTournamentsList();
+    resetMatchesTeamsLists();
 }
 
 void TournamentWindow::on_exit_btn_clicked()
@@ -91,6 +92,14 @@ void TournamentWindow::updateMatchesTeamsLists()
         for (int i = 0; i < teams_table_model->columnCount(); i++)
             ui->teams_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
     }
+}
+
+void TournamentWindow::resetMatchesTeamsLists()
+{
+    matches_table_model = make_shared<MatchesTableModel>();
+    teams_table_model = make_shared<TeamsTableModel>();
+    ui->matches_tableView->setModel(matches_table_model.get());
+    ui->teams_tableView->setModel(teams_table_model.get());
 }
 
 
@@ -185,6 +194,27 @@ void TournamentWindow::on_create_tournament_btn_clicked()
         tournament_creation_dialog->setup(tournament_controller->getUser()->getId());
         tournament_creation_dialog->exec();
         updateTournamentsList();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
+
+void TournamentWindow::on_delete_this_user_btn_clicked()
+{
+    try
+    {
+        qInfo(logUserAction()) << "Pressed DELETE THIS USER button in TournamentWindow";
+        users_repository->deleteUser(tournament_controller->getUser()->getId());
+        this->hide();
+        tournament_controller->logout();
+        emit exit();
     }
     catch (BaseError &er)
     {
