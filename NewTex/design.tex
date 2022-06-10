@@ -1,7 +1,44 @@
 \chapter{Конструкторская часть}
 \label{cha:design}
 
+В данном разделе приведены таблицы, инфологическая модель и схемы триггеров базы данных.
+
+\section{Таблицы базы данных}
+Исходя из приведенных выше use-case и ER диаграмм можно выделить следующие таблицы:
+
+\begin{itemize}
+	\item таблица ролей пользователей;
+	\item таблица пользователей;
+	\item таблица стран;
+	\item таблица спонсоров;
+	\item таблица команд;
+	\item табилца игроков;
+	\item таблица студий;
+	\item таблица комментаторов;
+	\item таблица турниров;
+	\item таблица турниров и участвующих в них команд;
+	\item таблица матчей.
+\end{itemize}
+
+\newpage
 \section{Инфологическая модель базы данных}
 Ниже, на рисунке \ref{img:InfoModelDB.pdf} приведена инфологическая модель базы данных, определяющая связи между полями будущих таблиц.
 
 \imgsc{H}{0.8}{InfoModelDB.pdf}{Инфологическая модель базы данных}
+
+\newpage
+\section{Схемы триггеров}
+На рисунке \ref{img:tr_whenDeleteTeamCaptain} изображена схема триггера который срабатывает при удаление пользователя с ролью \textquotedblleft Team captain\textquotedblright.
+
+\imgsc{H}{1}{tr_whenDeleteTeamCaptain}{схема триггера $tr\_whenDeleteTeamCaptain$}
+
+На рисунке \ref{img:tr_whenDeleteStudioOwner} изображена схема триггера который срабатывает при удаление пользователя с ролью \textquotedblleft Studio owner\textquotedblright.
+
+\imgsc{H}{1}{tr_whenDeleteStudioOwner}{схема триггера $tr\_whenDeleteStudioOwner$}
+
+На рисунке \ref{img:tr_whenDeleteTournamentOrganizer} изображена схема триггера который срабатывает при удаление пользователя с ролью \textquotedblleft Tournament organizer\textquotedblright.
+
+\imgsc{H}{1}{tr_whenDeleteTournamentOrganizer}{схема триггера $tr\_whenDeleteTournamentOrganizer$}
+
+\section*{Вывод из конструкторской части}
+В данном разделе были выделены таблицы, разработна инфологическая модель и  схемы триггеров базы данных.

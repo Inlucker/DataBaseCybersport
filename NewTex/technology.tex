@@ -1,2 +1,51 @@
 \chapter{Технологическая часть}
 \label{cha:impl}
+
+%\begin{lstlisting}[language=SQL]
+%	drop table public.Countries cascade;
+%	drop table public.Sponsors cascade;
+%	drop table public.Teams cascade;
+%	drop table public.Players cascade;
+%	drop table public.Studios cascade;
+%	drop table public.Commentators cascade;
+%	drop table public.Tournaments cascade;
+%	drop table public.Matches cascade;
+%	drop table public.UserRoles cascade;
+%	drop table public.Users cascade;
+%	drop table public.TournamentTeams cascade;
+%	
+%	
+%	--9000
+%	--Admin, Tournament Organizer, Studio Owner, Team Captain
+%	create table if not exists UserRoles
+%	(
+%	id serial primary key,
+%	name text
+%	);
+%\end{lstlisting}
+
+\begin{lstinputlisting}[
+	caption={создание таблиц, часть 1},
+	label={TableCreation},
+	language=SQL,
+	linerange={1-40},
+	]{./inc/src/TableCreation.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание таблиц, часть 2},
+	label={TableCreation},
+	language=SQL,
+	linerange={42-79},
+	]{./inc/src/TableCreation.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание таблиц, часть 3},
+	label={TableCreation},
+	language=SQL,
+	linerange={81-116},
+	]{./inc/src/TableCreation.sql}
+\end{lstinputlisting}
