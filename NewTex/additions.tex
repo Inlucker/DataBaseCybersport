@@ -1,5 +1,22 @@
 %\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ А}
-\StructuredChapter{ПРИЛОЖЕНИЕ А }
+%\StructuredChapter{ПРИЛОЖЕНИЕ А}
+
+\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ А Создание базы данных}
+
+\titleformat
+{\chapter} % command
+[display] % shape
+{\centering\normalfont\large\bfseries} % format
+{\centering ПРИЛОЖЕНИЕ А} % label
+{-1ex} % sep
+{
+	\centering
+} 
+\chapter{Создание базы данных}
+\titleformat{\chapter}[display]
+{\normalfont\large\bfseries}
+{\thechapter}
+{14pt}{\large}
 
 \appendix
 %\titleformat{\section}[display]
@@ -8,11 +25,9 @@
 %  {14pt}{\large\centering}
 %\renewcommand{\thesection}{\Asbuk{section}}
 
-% Я не знаю, как нумеровать формулы в приложении, как по стандарту (например "(A.1)")
-
 %\section{Поддержка SQL Server в ОС Fedora Workstation 35}
 
-%\section{Создание таблиц}
+%\section*{Создание базы данных}
 \begin{lstinputlisting}[
 	caption={создание таблиц, часть 1},
 	label={TableCreation},
@@ -39,13 +54,13 @@
 	]{./inc/src/TableCreation.sql}
 \end{lstinputlisting}
 
-\newpage
-\begin{lstinputlisting}[
-	caption={копирование сгенерированных таблиц в базу данных},
-	label={Copy},
-	language=SQL,
-	]{./inc/src/Copy.sql}
-\end{lstinputlisting}
+%\newpage
+%\begin{lstinputlisting}[
+%	caption={копирование сгенерированных таблиц в базу данных},
+%	label={Copy},
+%	language=SQL,
+%	]{./inc/src/Copy.sql}
+%\end{lstinputlisting}
 
 \newpage
 \begin{lstinputlisting}[
