@@ -9,7 +9,7 @@
   breaklines=true,       % переносить длинные строки
 %   captionpos=b,          % подписи снизу -- вроде не надо
   inputencoding=koi8-r,
-  numbers=left,          % нумерация слева
+  numbers=none,          % нумерация слева
   numberstyle=\footnotesize,
   showspaces=false,      % показывать пробелы подчеркиваниями -- идиотизм 70-х годов
   showstringspaces=false,
@@ -76,11 +76,13 @@
 \renewcommand\lstlistlistingname{Листинги}
 
 %FOR SQL
+\definecolor{ltgreen}{rgb}{0,0.5,0}
 \definecolor{ltgray}{rgb}{0.5,0.5,0.5}
 \definecolor{dkred}{rgb}{0.5,0,0}
 
 \lstset{
 	commentstyle=\color{ltgray},
 	keywordstyle=\color{dkred},
+	stringstyle=\color{ltgreen},
 	language=SQL
 }

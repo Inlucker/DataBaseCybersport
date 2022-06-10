@@ -1,0 +1,49 @@
+\usepackage{csvsimple}
+
+%\addbibresource{biblio.bib}
+%\bibliography{biblio}
+\lstset{frame=none, tabsize=4}
+
+%ADDED
+\newcommand{\specialcell}[2][c]
+{
+	\begin{tabular}[#1]{@{}l@{}}#2\end{tabular}
+}
+
+\usepackage{listings}
+
+% Значения по умолчанию
+\lstset{
+	basicstyle= \footnotesize,
+	breakatwhitespace=true,% разрыв строк только на whitespacce
+	breaklines=true,       % переносить длинные строки
+	%   captionpos=b,          % подписи снизу -- вроде не надо
+	inputencoding=koi8-r,
+	numbers=none,          % нумерация слева
+	numberstyle=\footnotesize,
+	showspaces=false,      % показывать пробелы подчеркиваниями -- идиотизм 70-х годов
+	showstringspaces=false,
+	showtabs=false,        % и табы тоже
+	stepnumber=1,
+	tabsize=4,              % кому нужны табы по 8 символов?
+	frame=single
+}
+
+%FOR SQL
+\definecolor{ltgreen}{rgb}{0,0.5,0}
+\definecolor{ltgray}{rgb}{0.5,0.5,0.5}
+\definecolor{dkred}{rgb}{0.5,0,0}
+
+\lstset{
+	commentstyle=\color{ltgray},
+	keywordstyle=\color{dkred},
+	stringstyle=\color{ltgreen},
+	language=SQL
+}
+
+%FOR GOST BIBLIO
+%\usepackage[T2A]{fontenc} % Поддержка русских букв
+%\usepackage[utf8]{inputenc} % Кодировка utf8
+%\usepackage[english, russian]{babel} % Языки: русский, английский
+%\usepackage{pscyr} % Нормальные шрифты
+\addto\captionsrussian{\def\refname{Список используемой литературы}}

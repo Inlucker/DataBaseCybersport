@@ -1,13 +1,92 @@
-\addcontentsline{toc}{chapter}{Приложения}
+%\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ А}
+\StructuredChapter{ПРИЛОЖЕНИЕ А }
 
 \appendix
-\titleformat{\section}[display]
-  {\normalfont\large\bfseries}
-  {\centering ПРИЛОЖЕНИЕ\ \thesection}
-  {14pt}{\large\centering}
-\renewcommand{\thesection}{\Asbuk{section}}
+%\titleformat{\section}[display]
+%  {\normalfont\large\bfseries}
+%  {\centering ПРИЛОЖЕНИЕ\ \thesection}
+%  {14pt}{\large\centering}
+%\renewcommand{\thesection}{\Asbuk{section}}
 
 % Я не знаю, как нумеровать формулы в приложении, как по стандарту (например "(A.1)")
 
 %\section{Поддержка SQL Server в ОС Fedora Workstation 35}
 
+%\section{Создание таблиц}
+\begin{lstinputlisting}[
+	caption={создание таблиц, часть 1},
+	label={TableCreation},
+	language=SQL,
+	linerange={1-39},
+	]{./inc/src/TableCreation.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание таблиц, часть 2},
+	label={TableCreation},
+	language=SQL,
+	linerange={41-78},
+	]{./inc/src/TableCreation.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание таблиц, часть 3},
+	label={TableCreation},
+	language=SQL,
+	linerange={80-115},
+	]{./inc/src/TableCreation.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={копирование сгенерированных таблиц в базу данных},
+	label={Copy},
+	language=SQL,
+	]{./inc/src/Copy.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание views, часть 1},
+	label={Views},
+	language=SQL,
+	linerange={1-36},
+	]{./inc/src/Views.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание views, часть 2},
+	label={Views},
+	language=SQL,
+	linerange={38-80},
+	]{./inc/src/Views.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание триггеров, часть 1},
+	label={Triggers},
+	language=SQL,
+	linerange={1-24},
+	]{./inc/src/Triggers.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание триггеров, часть 2},
+	label={Triggers},
+	language=SQL,
+	linerange={26-68},
+	]{./inc/src/Triggers.sql}
+\end{lstinputlisting}
+
+\newpage
+\begin{lstinputlisting}[
+	caption={создание ролей},
+	label={Roles},
+	language=SQL,
+	]{./inc/src/Roles.sql}
+\end{lstinputlisting}
