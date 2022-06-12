@@ -19,7 +19,7 @@ def generateUsers(records_number):
         elif (role_id == 4):
             captains.append(i+1)
         password = "123"
-        line = "{0}|{1}|{2}\n".format(role_id,
+        line = "{0}|{1}|{2}|FALSE\n".format(role_id,
                                       faker.user_name(),
                                       password)
         f.write(line)

@@ -23,8 +23,12 @@ shared_ptr<UserBL> UsersRepository::getUser(string login, string password)
             int role_id = atoi(PQgetvalue (res, 0, 1));
             string login = PQgetvalue (res, 0, 2);
             string password = PQgetvalue (res, 0, 3);
+            string del = PQgetvalue (res, 0, 4);
+            bool deleted = false;
+            if (del == "t")
+                deleted = true;
 
-            return make_shared<UserBL>(ID, role_id, password, login);
+            return make_shared<UserBL>(ID, role_id, login, password, deleted);
         }
         else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
         {
@@ -59,8 +63,12 @@ shared_ptr<UserBL> UsersRepository::getUser(int id)
             int role_id = atoi(PQgetvalue (res, 0, 1));
             string login = PQgetvalue (res, 0, 2);
             string password = PQgetvalue (res, 0, 3);
+            string del = PQgetvalue (res, 0, 4);
+            bool deleted = false;
+            if (del == "t")
+                deleted = true;
 
-            return make_shared<UserBL>(ID, role_id, password, login);
+            return make_shared<UserBL>(ID, role_id, login, password, deleted);
         }
         else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
         {
@@ -95,8 +103,12 @@ shared_ptr<UserBL> UsersRepository::getUserByLogin(string name)
             int role_id = atoi(PQgetvalue (res, 0, 1));
             string login = PQgetvalue (res, 0, 2);
             string password = PQgetvalue (res, 0, 3);
+            string del = PQgetvalue (res, 0, 4);
+            bool deleted = false;
+            if (del == "t")
+                deleted = true;
 
-            return make_shared<UserBL>(ID, role_id, password, login);
+            return make_shared<UserBL>(ID, role_id, login, password, deleted);
         }
         else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
         {
@@ -122,10 +134,10 @@ void UsersRepository::addUser(UserBL &user)
     string login = user.getLogin();
     string password = user.getPassword();
 
-    string query = "insert into Users(role_id, login, password) values(";
+    string query = "insert into Users(role_id, login, password, deleted) values(";
     query += std::to_string(role_id) + ", '";
     query += login + "', '";
-    query += password + "');";
+    query += password + "', FALSE);";
     PQsendQuery(m_connection.get(), query.c_str());
 
     bool flag = false;
@@ -159,8 +171,8 @@ void UsersRepository::deleteUser(int id)
     string error_msg = "";
     while (auto res = PQgetResult( m_connection.get()))
     {
-        if (PQcmdTuples(res)[0] == '0')
-            flag = true;
+        /*if (PQcmdTuples(res)[0] == '0')
+            flag = 1;*/
         if (PQresultStatus(res) == PGRES_FATAL_ERROR)
         {
             error_msg += "\n";
@@ -172,9 +184,9 @@ void UsersRepository::deleteUser(int id)
     }
 
     time_t t_time = time(NULL);
-    if (flag == 1)
+    /*if (flag == 1)
         throw DeleteUserError("No such user", __FILE__, __LINE__, ctime(&t_time));
-    else if (flag == 2)
+    else*/ if (flag == 2)
         throw DeleteUserError(error_msg, __FILE__, __LINE__, ctime(&t_time));
 }
 

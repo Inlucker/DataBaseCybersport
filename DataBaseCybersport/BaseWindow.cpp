@@ -39,28 +39,35 @@ void BaseWindow::on_login_btn_clicked()
         string login = ui->login_lineEdit->text().toStdString();
         string password = ui->password_lineEdit->text().toStdString();
         shared_ptr<UserBL> user_bl = user_repository->getUser(login, password);
-        string role = user_roles_repository->getUserRole(user_bl->getRoleId());
-        if (role == "team_captain")
+        if (!user_bl->getDeleted())
         {
-            team_window->login(user_bl);
-            team_window->show();
-            this->hide();
-        }
-        else if (role == "studio_owner")
-        {
-            studio_window->login(user_bl);
-            studio_window->show();
-            this->hide();
-        }
-        else if (role == "tournament_organizer")
-        {
-            tournament_window->login(user_bl);
-            tournament_window->show();
-            this->hide();
+            string role = user_roles_repository->getUserRole(user_bl->getRoleId());
+            if (role == "team_captain")
+            {
+                team_window->login(user_bl);
+                team_window->show();
+                this->hide();
+            }
+            else if (role == "studio_owner")
+            {
+                studio_window->login(user_bl);
+                studio_window->show();
+                this->hide();
+            }
+            else if (role == "tournament_organizer")
+            {
+                tournament_window->login(user_bl);
+                tournament_window->show();
+                this->hide();
+            }
+            else
+            {
+                QMessageBox::information(this, "Error", "No such role");
+            }
         }
         else
         {
-            QMessageBox::information(this, "Error", "No such role");
+            QMessageBox::information(this, "Error", "No such user");
         }
         qInfo(logUserAction()) << "Login completed";
     }
@@ -92,7 +99,7 @@ void BaseWindow::on_registrate_btn_clicked()
         string login = ui->login_lineEdit->text().toStdString();
         string password = ui->password_lineEdit->text().toStdString();
         int role_id = ui->role_comboBox->currentIndex() + 2;
-        UserBL user_bl(0, role_id, login, password);
+        UserBL user_bl(0, role_id, login, password, false);
         user_repository->addUser(user_bl);
         QMessageBox::information(this, "Registration", "Registration completed");
         qInfo(logUserAction()) << "Registration completed";

@@ -1,6 +1,6 @@
 copy UserRoles from '/UserRoles.csv' delimiter '|' csv;
 
-copy Users(role_id, login, password) from '/Users.csv' delimiter '|' csv;
+copy Users(role_id, login, password, deleted) from '/Users.csv' delimiter '|' csv;
 
 copy Countries from '/Countries.csv' delimiter '|' csv;
 

@@ -26,7 +26,8 @@ create table if not exists Users
 	role_id int,
 	FOREIGN KEY (role_id) REFERENCES public.UserRoles (id),
 	login text,
-	password text
+	password text,
+	deleted bool
 );
 
 --1

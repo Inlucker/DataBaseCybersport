@@ -6,9 +6,10 @@ UserBL::UserBL()
     role_id = -1;
     login = "";
     password = "";
+    deleted = true;
 }
 
-UserBL::UserBL(int i, int r_id, string l, string p) : id(i), role_id(r_id), login(l), password(p)
+UserBL::UserBL(int i, int r_id, string l, string p, bool del) : id(i), role_id(r_id), login(l), password(p), deleted(del)
 {
     id = i;
     role_id = r_id;
@@ -23,7 +24,8 @@ bool UserBL::operator ==(UserBL &an_ubl)
     if (this->id != an_ubl.id ||
             this->login != an_ubl.login ||
             this->password != an_ubl.password ||
-            this->role_id != an_ubl.role_id)
+            this->role_id != an_ubl.role_id ||
+            this->deleted != an_ubl.deleted)
         res = false;
     return res;
 }
@@ -51,4 +53,9 @@ const string& UserBL::getLogin() const
 const string& UserBL::getPassword() const
 {
     return password;
+}
+
+const bool &UserBL::getDeleted() const
+{
+    return deleted;
 }
