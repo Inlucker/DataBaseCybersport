@@ -91,6 +91,44 @@ shared_ptr<vector<StudioDTO> > StudioRepository::getAllStudios()
     return vec;
 }
 
+void StudioRepository::addStudio(StudioBL &studio_bl)
+{
+    connect();
+    //int ID = player_bl.getId();
+    string country_id = to_string(studio_bl.getCountryId());
+    string owner_id = to_string(studio_bl.getOwnerId());
+    string name = "'" + studio_bl.getName() + "'";
+
+    string query = "insert into Studios(country_id, owner_id, name) values(";
+    query += country_id + ", ";
+    query += owner_id + ", ";
+    query += name + ");";
+    PQsendQuery(m_connection.get(), query.c_str());
+
+    bool flag = false;
+    string error_msg = "";
+    while (auto res = PQgetResult( m_connection.get()))
+    {
+        if (PQresultStatus(res) == PGRES_TUPLES_OK && PQntuples(res))
+        {
+            //int ID = atoi(PQgetvalue(res, 0, 0));
+            //return ID;
+        }
+        else if (PQresultStatus(res) == PGRES_FATAL_ERROR)
+        {
+            error_msg += "\n";
+            error_msg += PQresultErrorMessage(res);
+            flag = true;
+        }
+
+        PQclear( res );
+    }
+
+    time_t t_time = time(NULL);
+    if (flag)
+        throw InsertStudioError(error_msg, __FILE__, __LINE__, ctime(&t_time));
+}
+
 void StudioRepository::connect()
 {
     string m_dbhost = Settings::get(Settings::DBHost, Settings::DataBase).toString().toStdString();

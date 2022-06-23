@@ -46,7 +46,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Delete</string>
+    <string>Delete player</string>
    </property>
   </widget>
   <widget class="QPushButton" name="exit_btn">
@@ -82,7 +82,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Add</string>
+    <string>Add player</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -229,7 +229,7 @@
      </font>
     </property>
     <property name="text">
-     <string>CreateTeam</string>
+     <string>Create team</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="team_name_lineEdit">
@@ -247,7 +247,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Team Name</string>
+     <string>Team name</string>
     </property>
    </widget>
    <widget class="QComboBox" name="sponsors_comboBox">

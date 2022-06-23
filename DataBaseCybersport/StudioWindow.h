@@ -7,6 +7,7 @@
 #include "Repositorys/UsersRepository.h"
 #include "Repositorys/CommentatorRepository.h"
 #include "Repositorys/StudioRepository.h"
+#include "Repositorys/CountriesRepository.h"
 #include "TableModels/CommentatorsTableModel.h"
 #include "TableModels/StudiosTableModel.h"
 
@@ -42,10 +43,13 @@ private slots:
 
     void on_delete_user_btn_clicked();
 
+    void on_create_studio_btn_clicked();
+
 private:
     void updateFreeCommentatorsList();
     void updateMyCommentatorsList();
     void updateStudiosList();
+    void updateCountries();
     void updateLists();
 
 private:
@@ -56,6 +60,7 @@ private:
     shared_ptr<UsersRepository> users_repository;
     shared_ptr<CommentatorRepository> commentator_repository;
     shared_ptr<StudioRepository> studio_repository;
+    shared_ptr<CountriesRepository> countries_repository;
 
     shared_ptr<CommentatorsTableModel> free_coms_table_model;
     shared_ptr<CommentatorsTableModel> my_coms_table_model;

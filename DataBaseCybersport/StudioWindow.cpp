@@ -18,6 +18,7 @@ StudioWindow::StudioWindow(QWidget *parent) :
     users_repository = make_shared<UsersRepository>();
     commentator_repository = make_shared<CommentatorRepository>();
     studio_repository = make_shared<StudioRepository>();
+    countries_repository = make_shared<CountriesRepository>();
 
     free_coms_table_model = make_shared<CommentatorsTableModel>();
     my_coms_table_model = make_shared<CommentatorsTableModel>();
@@ -85,11 +86,22 @@ void StudioWindow::updateStudiosList()
         ui->studios_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
+void StudioWindow::updateCountries()
+{
+    ui->countries_comboBox->clear();
+    shared_ptr<vector<string>> countries = countries_repository->getAllCountries();
+    for (auto & country : *countries)
+    {
+        ui->countries_comboBox->addItem(QString::fromStdString(country));
+    }
+}
+
 void StudioWindow::updateLists()
 {
     updateFreeCommentatorsList();
     updateMyCommentatorsList();
     updateStudiosList();
+    updateCountries();
 }
 
 
@@ -202,6 +214,37 @@ void StudioWindow::on_delete_user_btn_clicked()
         this->hide();
         studio_controller->logout();
         emit exit();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
+
+void StudioWindow::on_create_studio_btn_clicked()
+{
+    try
+    {
+        qInfo(logUserAction()) << "Pressed CREATE STUDIO button";
+        shared_ptr<UserBL> user = studio_controller->getUser();
+        string name = ui->studio_name_lineEdit->text().toStdString();
+        int country_id = ui->countries_comboBox->currentIndex()+1;
+        //int sponsor_id = ui->sponsors_comboBox->currentIndex()+1;
+        if (name.length() > 0)
+        {
+            StudioBL new_studio(0, country_id, user->getId(), name);
+            studio_repository->addStudio(new_studio);
+            updateLists();
+        }
+        else
+        {
+            QMessageBox::information(this, "Error", "Team name can't be empty");
+        }
     }
     catch (BaseError &er)
     {

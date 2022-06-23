@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "EssensitiesDTO/StudioDTO.h"
+#include "EssensitiesBL/StudioBL.h"
 
 class StudioRepository
 {
@@ -17,6 +18,7 @@ public:
 
     shared_ptr<vector<StudioDTO>> getStudiosDTOByOwnerId(int owner_id);
     shared_ptr<vector<StudioDTO>> getAllStudios();
+    void addStudio(StudioBL& studio_bl);
 
 protected:
     void connect();

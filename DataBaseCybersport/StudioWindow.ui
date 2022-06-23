@@ -28,7 +28,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Delete</string>
+    <string>Delete commentator</string>
    </property>
   </widget>
   <widget class="QPushButton" name="exit_btn">
@@ -64,7 +64,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Add</string>
+    <string>Add commentator</string>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox_3">
@@ -185,6 +185,83 @@
       <string/>
      </property>
     </item>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>1060</x>
+     <y>110</y>
+     <width>201</width>
+     <height>221</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Studio creation</string>
+   </property>
+   <widget class="QComboBox" name="countries_comboBox">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>50</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="create_studio_btn">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>170</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Create studio</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="studio_name_lineEdit">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>110</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Studio name</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>181</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Country</string>
+    </property>
    </widget>
   </widget>
  </widget>
