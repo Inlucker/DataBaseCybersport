@@ -34,6 +34,7 @@ SOURCES += \
     Repositorys/ICountriesRepository.cpp \
     Repositorys/ITeamsRepository.cpp \
     Repositorys/MatchesRepository.cpp \
+    Repositorys/SponsorsRepository.cpp \
     Repositorys/StudioRepository.cpp \
     Repositorys/TeamsRepository.cpp \
     Repositorys/TournamentsRepository.cpp \
@@ -86,6 +87,7 @@ HEADERS += \
     Repositorys/ICountriesRepository.h \
     Repositorys/ITeamsRepository.h \
     Repositorys/MatchesRepository.h \
+    Repositorys/SponsorsRepository.h \
     Repositorys/StudioRepository.h \
     Repositorys/TeamsRepository.h \
     Repositorys/TournamentsRepository.h \

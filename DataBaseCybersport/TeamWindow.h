@@ -16,6 +16,7 @@ using namespace std;
 #include "Repositorys/PlayersRepository.h"
 #include "Repositorys/TeamsRepository.h"
 #include "Repositorys/CountriesRepository.h"
+#include "Repositorys/SponsorsRepository.h"
 
 #include "TableModels/PlayersTableModel.h"
 #include "TableModels/TeamsTableModel.h"
@@ -49,6 +50,8 @@ private slots:
 
     void on_delete_user_btn_clicked();
 
+    void on_create_team_btn_clicked();
+
 signals:
     void exit();
 
@@ -56,6 +59,8 @@ private:
     void updateFreePlayersList();
     void updateMyPlayerList();
     void updateTeamsList();
+    void updateCountries();
+    void updateSponsors();
     void updateLists();
 
 private:
@@ -67,6 +72,7 @@ private:
     shared_ptr<PlayersRepository> players_repository;
     shared_ptr<TeamsRepository> teams_repository;
     shared_ptr<CountriesRepository> countries_repository;
+    shared_ptr<SponsorsRepository> sponsors_repository;
 
     shared_ptr<PlayersTableModel> free_players_table_model;
     shared_ptr<PlayersTableModel> my_players_table_model;

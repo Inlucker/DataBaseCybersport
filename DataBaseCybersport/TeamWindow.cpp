@@ -19,6 +19,7 @@ TeamWindow::TeamWindow(QWidget *parent) :
     players_repository = make_shared<PlayersRepository>();
     teams_repository = make_shared<TeamsRepository>();
     countries_repository = make_shared<CountriesRepository>();
+    sponsors_repository = make_shared<SponsorsRepository>();
 
     free_players_table_model = make_shared<PlayersTableModel>();
     my_players_table_model = make_shared<PlayersTableModel>();
@@ -98,11 +99,33 @@ void TeamWindow::updateTeamsList()
         ui->teams_tableView->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
 }
 
+void TeamWindow::updateCountries()
+{
+    ui->countries_comboBox->clear();
+    shared_ptr<vector<string>> countries = countries_repository->getAllCountries();
+    for (auto & country : *countries)
+    {
+        ui->countries_comboBox->addItem(QString::fromStdString(country));
+    }
+}
+
+void TeamWindow::updateSponsors()
+{
+    ui->sponsors_comboBox->clear();
+    shared_ptr<vector<string>> sponsors = sponsors_repository->getAllSponsors();
+    for (auto & sponsor : *sponsors)
+    {
+        ui->sponsors_comboBox->addItem(QString::fromStdString(sponsor));
+    }
+}
+
 void TeamWindow::updateLists()
 {
     updateFreePlayersList();
     updateMyPlayerList();
     updateTeamsList();
+    updateCountries();
+    updateSponsors();
 }
 
 void TeamWindow::on_add_btn_clicked()
@@ -214,6 +237,37 @@ void TeamWindow::on_delete_user_btn_clicked()
         this->hide();
         team_controller->logout();
         emit exit();
+    }
+    catch (BaseError &er)
+    {
+        QMessageBox::information(this, "Error", er.what());
+    }
+    catch (...)
+    {
+        QMessageBox::information(this, "Error", "Unexpected Error");
+    }
+}
+
+
+void TeamWindow::on_create_team_btn_clicked()
+{
+    try
+    {
+        qInfo(logUserAction()) << "Pressed CREATE TEAM button";
+        shared_ptr<UserBL> user = team_controller->getUser();
+        string name = ui->team_name_lineEdit->text().toStdString();
+        int country_id = ui->countries_comboBox->currentIndex()+1;
+        int sponsor_id = ui->sponsors_comboBox->currentIndex()+1;
+        if (name.length() > 0)
+        {
+            TeamBL new_team(0, country_id, sponsor_id, user->getId(), name);
+            teams_repository->addTeam(new_team);
+            updateLists();
+        }
+        else
+        {
+            QMessageBox::information(this, "Error", "Team name can't be empty");
+        }
     }
     catch (BaseError &er)
     {

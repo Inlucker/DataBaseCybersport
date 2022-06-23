@@ -124,6 +124,17 @@ public:
     }
 };
 
+class InsertTeamError : public BaseError
+{
+public:
+    InsertTeamError(string info, string filename, int line, const char *time, string error = "Insert team error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
 class GetCountryError : public BaseError
 {
 public:
@@ -216,6 +227,17 @@ class UpdateMatchError : public BaseError
 {
 public:
     UpdateMatchError(string info, string filename, int line, const char *time, string error = "Update match error")
+        : BaseError(info, filename, line, time, error) {};
+    virtual const char* what() const noexcept
+    {
+        return err_info.c_str();
+    }
+};
+
+class GetSponsorError : public BaseError
+{
+public:
+    GetSponsorError(string info, string filename, int line, const char *time, string error = "Get sponsor error")
         : BaseError(info, filename, line, time, error) {};
     virtual const char* what() const noexcept
     {
