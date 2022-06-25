@@ -1,0 +1,45 @@
+2022-06-25 08:32:19.084 INF UserAction: Pressed on login button
+2022-06-25 08:32:19.356 INF UserAction: Login completed
+2022-06-25 08:32:20.216 INF UserAction: Pressed EXIT button
+2022-06-25 08:32:21.321 INF UserAction: Pressed on login button
+2022-06-25 08:32:21.341 WRN Exception: Wrong username or password; File name: Repositorys\UsersRepository.cpp; Line#: 47; What caused error: login or password
+2022-06-25 11:02:51.487 INF UserAction: Pressed on login button
+2022-06-25 11:02:51.890 INF UserAction: Login completed
+2022-06-25 11:05:27.575 INF UserAction: Pressed on login button
+2022-06-25 11:05:27.905 INF UserAction: Login completed
+2022-06-25 11:05:31.521 INF UserAction: Pressed EXIT button
+2022-06-25 11:05:41.460 INF UserAction: Pressed on login button
+2022-06-25 11:05:41.523 INF UserAction: Login completed
+2022-06-25 11:08:48.381 INF UserAction: Pressed EXIT button in TournamentWindow
+2022-06-25 11:09:21.761 INF UserAction: Pressed on login button
+2022-06-25 11:09:21.786 WRN Exception: Wrong username or password; File name: Repositorys\UsersRepository.cpp; Line#: 47; What caused error: login or password
+2022-06-25 11:09:26.296 INF UserAction: Pressed on login button
+2022-06-25 11:09:26.635 INF UserAction: Login completed
+2022-06-25 11:09:47.454 INF UserAction: Pressed CREATE TEAM button
+2022-06-25 11:10:04.482 INF UserAction: Pressed CREATE TEAM button
+2022-06-25 11:10:53.469 INF UserAction: Pressed EXIT button
+2022-06-25 11:10:54.835 INF UserAction: Pressed on login button
+2022-06-25 11:10:55.071 INF UserAction: Login completed
+2022-06-25 11:11:10.064 INF UserAction: Pressed EXIT button
+2022-06-25 11:11:45.386 INF UserAction: Pressed on login button
+2022-06-25 11:11:45.669 INF UserAction: Login completed
+2022-06-25 11:11:49.003 INF UserAction: Pressed DELETE THIS USER button
+2022-06-25 11:11:56.701 INF UserAction: Pressed on login button
+2022-06-25 11:11:57.775 INF UserAction: Login completed
+2022-06-25 11:12:02.878 INF UserAction: Pressed on registrate button
+2022-06-25 11:12:03.914 INF UserAction: Registration completed
+2022-06-25 11:12:04.675 INF UserAction: Pressed on login button
+2022-06-25 11:12:06.253 INF UserAction: Login completed
+2022-06-25 11:12:14.625 INF UserAction: Pressed on login button
+2022-06-25 11:12:15.877 INF UserAction: Login completed
+2022-06-25 11:12:56.308 INF UserAction: Pressed on login button
+2022-06-25 11:12:56.606 INF UserAction: Login completed
+2022-06-25 11:13:12.191 INF UserAction: Pressed CREATE TEAM button
+2022-06-25 11:13:26.439 INF UserAction: Pressed EXIT button
+2022-06-25 13:00:27.692 INF UserAction: Pressed on login button
+2022-06-25 13:00:28.014 INF UserAction: Login completed
+2022-06-25 13:01:05.168 INF UserAction: Pressed DELETE THIS USER button
+2022-06-25 13:01:43.777 INF UserAction: Pressed on login button
+2022-06-25 13:01:44.052 INF UserAction: Login completed
+2022-06-25 13:02:00.598 INF UserAction: Pressed CREATE STUDIO button
+2022-06-25 13:02:52.636 INF UserAction: Pressed EXIT button in StudioWindow

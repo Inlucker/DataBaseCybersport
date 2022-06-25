@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
     // Открываем файл логирования
     m_logFile.data()->open(QFile::Append | QFile::Text);
     // Устанавливаем обработчик
-    //qInstallMessageHandler(messageHandler);
+    qInstallMessageHandler(messageHandler);
 
     BaseWindow w;
     w.show();

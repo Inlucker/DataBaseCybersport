@@ -62,7 +62,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>kevin22</string>
+     <string>deanna08</string>
     </property>
    </widget>
    <widget class="QPushButton" name="login_btn">
@@ -108,7 +108,7 @@
      <x>0</x>
      <y>0</y>
      <width>222</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
